@@ -1,0 +1,166 @@
+<!-- asset_form.html -->
+{% extends '_base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1>{{ title }}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'asset_management' %}">Assets</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {% if asset %}Edit: {{ asset.name }}{% else %}Add New{% endif %}
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Asset Information</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.site.id_for_label }}" class="form-label">
+                                    <label for="{{ form.site.id_for_label }}" class="form-label">Site</label>
+                                {{ form.site }}
+                                {% if form.site.errors %}
+                                    <div class="text-danger small">{{ form.site.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.name.id_for_label }}" class="form-label">Asset Name</label>
+                                {{ form.name }}
+                                {% if form.name.errors %}
+                                    <div class="text-danger small">{{ form.name.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.type.id_for_label }}" class="form-label">Asset Type</label>
+                                {{ form.type }}
+                                {% if form.type.errors %}
+                                    <div class="text-danger small">{{ form.type.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.units.id_for_label }}" class="form-label">Units</label>
+                                {{ form.units }}
+                                {% if form.units.errors %}
+                                    <div class="text-danger small">{{ form.units.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3 equipment-field">
+                                <label for="{{ form.serial_number.id_for_label }}" class="form-label">Serial Number (for equipment)</label>
+                                {{ form.serial_number }}
+                                {% if form.serial_number.errors %}
+                                    <div class="text-danger small">{{ form.serial_number.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3 material-field">
+                                <label for="{{ form.quantity_in_stock.id_for_label }}" class="form-label">Quantity in Stock (for material)</label>
+                                {{ form.quantity_in_stock }}
+                                {% if form.quantity_in_stock.errors %}
+                                    <div class="text-danger small">{{ form.quantity_in_stock.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.cost_per_unit.id_for_label }}" class="form-label">Cost per Unit</label>
+                                {{ form.cost_per_unit }}
+                                {% if form.cost_per_unit.errors %}
+                                    <div class="text-danger small">{{ form.cost_per_unit.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.assignment_date.id_for_label }}" class="form-label">Assignment Date</label>
+                                {{ form.assignment_date }}
+                                {% if form.assignment_date.errors %}
+                                    <div class="text-danger small">{{ form.assignment_date.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.maintenance_date.id_for_label }}" class="form-label">Maintenance Date</label>
+                            {{ form.maintenance_date }}
+                            <div class="form-text">Optional. Schedule date for maintenance if needed.</div>
+                            {% if form.maintenance_date.errors %}
+                                <div class="text-danger small">{{ form.maintenance_date.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.discription.id_for_label }}" class="form-label">Description</label>
+                            {{ form.discription }}
+                            {% if form.discription.errors %}
+                                <div class="text-danger small">{{ form.discription.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{% url 'asset_management' %}" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save Asset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const assetTypeSelect = document.getElementById('id_type');
+        const serialNumberField = document.querySelector('.equipment-field');
+        const quantityField = document.querySelector('.material-field');
+        
+        function updateFieldVisibility() {
+            if (assetTypeSelect.value === 'equipment') {
+                serialNumberField.style.display = 'block';
+                quantityField.style.display = 'none';
+            } else if (assetTypeSelect.value === 'material') {
+                serialNumberField.style.display = 'none';
+                quantityField.style.display = 'block';
+            } else {
+                serialNumberField.style.display = 'block';
+                quantityField.style.display = 'block';
+            }
+        }
+        
+        // Run on page load
+        updateFieldVisibility();
+        
+        // Run when user changes asset type
+        assetTypeSelect.addEventListener('change', updateFieldVisibility);
+    });
+</script>
+{% endblock %}

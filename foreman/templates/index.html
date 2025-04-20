@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% load static %}
+
+    <div class="container">
+      
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Sait</h1>
+                <p>Transform your construction site management with our comprehensive platform. Streamline operations, track inventory in real-time, and boost productivity across all your projects.</p>
+                <a href="{% url "register" %}" class="get-started">GET STARTED</a>
+            </div>
+            <div class="hero-image">
+                    <img src="{% static 'images/organic-flat-engineers-working-construction.png' %}" alt="Construction site illustration">
+                
+                    
+            </div>
+        </section>
+    </div>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                 <div class="about-image">
+        
+                    <img src="{% static 'images/building-permit-abstract-concept.png' %}" alt="About Sait">
+                </div>
+                <div class="about-text">
+                    <p>We’re on a mission to modernize construction site management. Our platform brings together everything you need to run efficient, organized, and productive job sites—from real-time inventory tracking to streamlined operations.</p>
+                        <p> Built for contractors, project managers, and teams on the ground, we help you stay in control, cut down delays, and deliver results with confidence. </p>
+                    
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="services-container">
+                <div class="service-item">
+                    <div class="service-icon"><i class='bx bx-package'></i></div>
+                    <h3>Inventory Tracking</h3>
+                    <p>Keep tabs on materials and equipment in real-time to prevent shortages and reduce waste. </p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class='bx bx-bar-chart-alt-2'></i></div>
+                    <h3>Reports & Analytics</h3>
+                    <p>Gain valuable insights with automated reports on site performance, resource usage, and project progress.                    </p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class='bx bx-mobile-alt'></i></div>
+                    <h3>Instant Messaging & Alerts</h3>
+                    <p>Stay connected with your team through real-time updates and instant notifications, right from your device.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class='bx bx-bot'></i></div>
+                    <h3>Built in AI Assitant</h3>
+                    <p>Get quick support, automate tasks, and stay informed with your built-in smart helper.                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceItems = document.querySelectorAll('.service-item');
+            
+            serviceItems.forEach(item => {
+                item.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const xRotation = ((y - rect.height / 2) / rect.height) * 10;
+                    const yRotation = ((x - rect.width / 2) / rect.width) * -10;
+                    
+                    this.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale3d(1.05, 1.05, 1.05)`;
+                });
+                
+                item.addEventListener('mouseout', function() {
+                    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                });
+            });
+        });
+    </script>
+
+    
+    {% endblock content %}

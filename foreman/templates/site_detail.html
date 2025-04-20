@@ -1,0 +1,131 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="mb-4 d-flex justify-content-between align-items-center">
+    <h2>Site Details: {{ site.name }}</h2>
+    <div>
+        <a href="{% url 'site_update' site.id %}" class="btn btn-primary me-2">Edit Site</a>
+        <a href="{% url 'site_list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Basic Information</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Name:</strong> {{ site.name }}</p>
+                <p><strong>Location:</strong> {{ site.location }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Start Date:</strong> {{ site.start_date }}</p>
+                <p><strong>End Date:</strong> {{ site.end_date }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Assets Section -->
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h3 class="mb-0">Assets</h3>
+        <a href="#" class="btn btn-sm btn-light">Add Asset</a>
+    </div>
+    <div class="card-body">
+        {% if assets %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Units</th>
+                        <th>Serial/Quantity</th>
+                        <th>Cost</th>
+                        <th>Maintenance</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asset in assets %}
+                    <tr>
+                        <td>{{ asset.name }}</td>
+                        <td>{{ asset.get_type_display }}</td>
+                        <td>{{ asset.units }}</td>
+                        <td>
+                            {% if asset.type == 'equipment' %}
+                                {{ asset.serial_number }}
+                            {% else %}
+                                {{ asset.quantity_in_stock }} units
+                            {% endif %}
+                        </td>
+                        <td>${{ asset.cost_per_unit }}</td>
+                        <td>{{ asset.maintenance_date }}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a href="#" class="btn btn-info">View</a>
+                                <a href="#" class="btn btn-primary">Edit</a>
+                                <a href="#" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No assets available for this site.
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Human Resources Section -->
+<div class="card">
+    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+        <h3 class="mb-0">Human Resources</h3>
+        <a href="{% url "add_human_resource" %}" class="btn btn-sm btn-light">Add Staff</a>
+    </div>
+    <div class="card-body">
+        {% if human_resources %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Salary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hr in human_resources %}
+                    <tr>
+                        <td>{{ hr.name }}</td>
+                        <td>{{ hr.role }}</td>
+                        <td>{{ hr.start_date }}</td>
+                        <td>{{ hr.end_date }}</td>
+                        <td>${{ hr.salary }}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a href="{% url "human_resource_list" %}" class="btn btn-info">View</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No human resources available for this site.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

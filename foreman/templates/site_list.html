@@ -1,0 +1,46 @@
+
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Site List</h2>
+    <a href="{% url 'site_create' %}" class="btn btn-primary">Add New Site</a>
+</div>
+
+{% if sites %}
+<div class="table-responsive">
+    <table class="table table-bordered site-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for site in sites %}
+            <tr>
+                <td>{{ site.name }}</td>
+                <td>{{ site.location }}</td>
+                <td>{{ site.start_date }}</td>
+                <td>{{ site.end_date }}</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="{% url 'site_detail' site.id %}" class="btn btn-sm btn-info me-2">View</a>
+                        <a href="{% url 'site_update' site.id %}" class="btn btn-sm btn-primary me-2">Edit</a>
+                        <a href="{% url 'site_delete' site.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">
+    No sites available. Please add a new site.
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,319 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Asset Management{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1>Asset Management</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Assets</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Filters</h5>
+                </div>
+                <div class="card-body">
+                    <form method="get" class="row g-3">
+                        <div class="col-md-3">
+                            <label for="site" class="form-label">Site</label>
+                            <select name="site" id="site" class="form-select">
+                                <option value="">All Sites</option>
+                                {% for site in sites %}
+                                    <option value="{{ site.id }}" {% if request.GET.site == site.id|stringformat:"i" %}selected{% endif %}>{{ site.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="type" class="form-label">Asset Type</label>
+                            <select name="type" id="type" class="form-select">
+                                <option value="">All Types</option>
+                                {% for type_value, type_label in asset_types %}
+                                    <option value="{{ type_value }}" {% if request.GET.type == type_value %}selected{% endif %}>{{ type_label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="search" class="form-label">Search</label>
+                            <input type="text" class="form-control" id="search" name="search" value="{{ request.GET.search|default:'' }}" placeholder="Search by name...">
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary me-2">Apply Filters</button>
+                            <a href="{% url 'asset_management' %}" class="btn btn-outline-secondary">Reset</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asset Summary -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Assets</h5>
+                    <h2 class="mb-0">{{ total_assets }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Equipment</h5>
+                    <h2 class="mb-0">{{ equipment_count }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Materials</h5>
+                    <h2 class="mb-0">{{ material_count }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Total Value</h5>
+                    <h2 class="mb-0">${{ total_value|floatformat:2 }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asset List -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Assets</h5>
+                    <a href="{% url 'asset_create' %}" class="btn btn-success">
+                        <i class="bi bi-plus-circle"></i> Add New Asset
+                    </a>
+                </div>
+                <div class="card-body p-0">
+                    {% if assets %}
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Site</th>
+                                        <th>Units</th>
+                                        <th>Quantity/Serial</th>
+                                        <th>Cost</th>
+                                        <th>Assignment Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for asset in assets %}
+                                    <tr>
+                                        <td>{{ asset.name }}</td>
+                                        <td>
+                                            {% if asset.type == 'equipment' %}
+                                                <span class="badge bg-success">Equipment</span>
+                                            {% else %}
+                                                <span class="badge bg-info">Material</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ asset.site.name }}</td>
+                                        <td>{{ asset.units }}</td>
+                                        <td>
+                                            {% if asset.type == 'equipment' %}
+                                                {{ asset.serial_number|default:"N/A" }}
+                                            {% else %}
+                                                {{ asset.quantity_in_stock }}
+                                            {% endif %}
+                                        </td>
+                                        <td>${{ asset.cost_per_unit|floatformat:2 }}</td>
+                                        <td>{{ asset.assignment_date|date:"M d, Y" }}</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="{% url 'asset_detail' asset.id %}" class="btn btn-sm btn-primary">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a href="{% url 'asset_update' asset.id %}" class="btn btn-sm btn-warning">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ asset.id }}">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+
+                                            <!-- Delete Confirmation Modal -->
+                                            <div class="modal fade" id="deleteModal{{ asset.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ asset.id }}" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel{{ asset.id }}">Confirm Deletion</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete <strong>{{ asset.name }}</strong>? This action cannot be undone.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <form action="{% url 'asset_delete' asset.id %}" method="post" class="d-inline">
+                                                                {% csrf_token %}
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info m-3">
+                            No assets found. <a href="{% url 'asset_create' %}" class="alert-link">Add your first asset</a>.
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    {% if assets.has_other_pages %}
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center mb-0">
+                            {% if assets.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ assets.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link" aria-hidden="true">&laquo;</span>
+                                </li>
+                            {% endif %}
+                            
+                            {% for num in assets.paginator.page_range %}
+                                {% if assets.number == num %}
+                                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                {% elif num > assets.number|add:'-3' and num < assets.number|add:'3' %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if assets.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ assets.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link" aria-hidden="true">&raquo;</span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asset Maintenance Alert Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Maintenance Alerts</h5>
+                </div>
+                <div class="card-body">
+                    {% if maintenance_due_assets %}
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Asset</th>
+                                        <th>Site</th>
+                                        <th>Maintenance Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for asset in maintenance_due_assets %}
+                                    <tr {% if asset.maintenance_date|date:"Y-m-d" < today|date:"Y-m-d" %}class="table-danger"{% else %}class="table-warning"{% endif %}>
+                                        <td>{{ asset.name }}</td>
+                                        <td>{{ asset.site.name }}</td>
+                                        <td>{{ asset.maintenance_date|date:"M d, Y" }}</td>
+                                        <td>
+                                            <a href="{% url 'asset_maintenance' asset.id %}" class="btn btn-sm btn-primary">Schedule Maintenance</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success">
+                            No maintenance alerts at this time.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // JavaScript for any interactive features
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-submit filter form when site or type changes
+        document.getElementById('site').addEventListener('change', function() {
+            this.form.submit();
+        });
+        
+        document.getElementById('type').addEventListener('change', function() {
+            this.form.submit();
+        });
+        
+        // Asset type change handler for form field visibility
+        const assetTypeSelect = document.getElementById('id_type');
+        if (assetTypeSelect) {
+            const serialNumberField = document.getElementById('id_serial_number').closest('.mb-3');
+            const quantityField = document.getElementById('id_quantity_in_stock').closest('.mb-3');
+            
+            function updateFieldVisibility() {
+                if (assetTypeSelect.value === 'equipment') {
+                    serialNumberField.style.display = 'block';
+                    quantityField.style.display = 'none';
+                } else if (assetTypeSelect.value === 'material') {
+                    serialNumberField.style.display = 'none';
+                    quantityField.style.display = 'block';
+                } else {
+                    serialNumberField.style.display = 'block';
+                    quantityField.style.display = 'block';
+                }
+            }
+            
+            updateFieldVisibility();
+            assetTypeSelect.addEventListener('change', updateFieldVisibility);
+        }
+    });
+</script>
+{% endblock %}
+

@@ -1,0 +1,123 @@
+{% extends '_base.html' %}
+
+{% block title %}Human Resources Management{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <header class="mb-8">
+    <h2 class="text-xl font-semibold">Human Resources</h2>
+        <p class="text-gray-600">Manage your site personnel effectively</p>
+    </header>
+
+    <div class=" rounded-lg shadow-md p-6 mb-8">
+        <div  class="flex justify-between items-center mb-6">
+    
+            <a href="{% url 'add_human_resource' %}" class="bg-blue-500 hover:bg-blue-600 text-black px-4 py-2 rounded"> <button id="add" type="submit" class="bg-blue-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Add Personnel</button></a>
+        </div>
+
+        <!-- Filter and Search -->
+        <form method="get" class="flex flex-wrap gap-4 mb-6">
+            <div class="w-full md:w-64">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Site</label>
+                <select name="site" class="w-full border rounded-md py-2 px-3">
+                    <option value="">All Sites</option>
+                    {% for site in sites %}
+                        <option value="{{ site.id }}" {% if request.GET.site == site.id|stringformat:"i" %}selected{% endif %}>{{ site.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="w-full md:w-64">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Role</label>
+                <select name="role" class="w-full border rounded-md py-2 px-3">
+                    <option value="">All Roles</option>
+                    {% for role in roles %}
+                        <option value="{{ role }}" {% if request.GET.role == role %}selected{% endif %}>{{ role }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="w-full md:w-64">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search by name..." class="w-full border rounded-md py-2 px-3">
+            </div>
+            <div id ="search" class="w-full md:w-64 flex items-end">
+                <style>
+                    #search button,
+                    #add{
+                            background-color: #3b82f6;
+                            border-style: none;
+                    
+                    }
+                 
+                </style>
+                <button type="submit" class="bg-blue-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Apply Filters</button>
+            </div>
+        </form>
+
+        <!-- Table -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm">
+                        <th class="py-3 px-4 text-left">Name</th>
+                        <th class="py-3 px-4 text-left">Role</th>
+                        <th class="py-3 px-4 text-left">Site</th>
+                        <th class="py-3 px-4 text-left">Start Date</th>
+                        <th class="py-3 px-4 text-left">End Date</th>
+                        <th class="py-3 px-4 text-left">Salary</th>
+                        <th class="py-3 px-4 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    {% for hr in human_resources %}
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-3 px-4">{{ hr.name }}</td>
+                        <td class="py-3 px-4">{{ hr.role }}</td>
+                        <td class="py-3 px-4">{{ hr.site.name }}</td>
+                        <td class="py-3 px-4">{{ hr.start_date|date:"m/d/Y" }}</td>
+                        <td class="py-3 px-4">{{ hr.end_date|date:"m/d/Y" }}</td>
+                        <td class="py-3 px-4">${{ hr.salary }}</td>
+                        <td class="py-3 px-4">
+                            <a href="{% url 'edit_human_resource' hr.id %}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
+                            <a href="{% url 'delete_human_resource' hr.id %}" class="text-red-500 hover:text-red-700" onclick="return confirm('Are you sure you want to delete {{hr.name}}?')">Delete</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="py-4 px-4 text-center">No human resources found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 flex justify-between items-center">
+            <div class="text-gray-600">
+                Showing {{ human_resources.start_index }} to {{ human_resources.end_index }} of {{ human_resources.paginator.count }} personnel
+            </div>
+            {% if human_resources.has_other_pages %}
+            <div class="flex space-x-2">
+                {% if human_resources.has_previous %}
+                    <a href="?page={{ human_resources.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="px-3 py-1 border rounded bg-blue-200">&lt;</a>
+                {% else %}
+                    <button class="px-3 py-1 border rounded bg-gray-200" disabled>&lt;</button>
+                {% endif %}
+                
+                {% for i in human_resources.paginator.page_range %}
+                    {% if human_resources.number == i %}
+                        <button class="px-3 py-1 border rounded bg-blue-500 text-white">{{ i }}</button>
+                    {% else %}
+                        <a href="?page={{ i }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="px-3 py-1 border rounded hover:bg-blue-100">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if human_resources.has_next %}
+                    <a href="?page={{ human_resources.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="px-3 py-1 border rounded bg-gray-200">&gt;</a>
+                {% else %}
+                    <button class="px-3 py-1 border rounded bg-gray-200" disabled>&gt;</button>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

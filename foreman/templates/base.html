@@ -1,0 +1,62 @@
+{% load static %}
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Caveat:wght@400..700&family=Italianno&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Sigmar&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    
+    <link href="{% static "landing.css" %}" rel="stylesheet">
+    </head>
+    <header>
+        <a href="/" class="logo">Sait</a>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="{% url "login" %}" class="login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}
+    
+    
+    
+    
+    
+    {% endblock content %}
+{% block footer %}
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PRESENTATION</h3>
+                    <p>We value your feedback and are constantly working to improve our services.</p>
+                    <p>Share your thoughts with us to help us serve you better.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>CONTACT US</h3>
+                    <p>Email: info@sait.com</p>
+                    <p>Phone: +254793525583</p>
+                </div>
+                <div class="footer-section">
+                    <h3>SOCIAL</h3>
+                    <ul>
+                        <li><a href="#" target="_blank"><i id="fb" class='bx bxl-facebook'></i></a></li>
+                        <li><a href="#" target="_blank"><i id="x" class='bx bxl-twitter'></i></a></li>
+                        <li><a href="#" target="_blank"><i id="ig" class='bx bxl-instagram'></i></a></li>
+                        <li><a href="#" target="_blank"><i id="li" class='bx bxl-linkedin'></i></a></li>
+                        <li><a href="#" target="_blank"><i id="yt" class='bx bxl-youtube'></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Sait. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+{% endblock footer %}

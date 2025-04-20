@@ -1,0 +1,326 @@
+{% extends '_base.html' %}
+
+{% load static %}
+<link href="{% static "style.css" %}" rel="stylesheet">
+{% block title %}Sait Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Header with quick stats -->
+    <div class="dashboard-header">
+        <h1>Welcome to Sait</h1>
+        <p>Smart Material & Asset Management with AI Assistance</p>
+        
+        <div class="stats">
+            <div class="stat">
+                <h3>Active Projects</h3>
+                <h4 class="stat-number" style="color:lightgreen; fontsize:1rem;" >{{ sites.count }}</h4>
+            </div>
+            <div class="stat">
+                <h3>Total Assets</h3>
+                <p class="stat-number">{{ assets.count }}</p>
+            </div>
+            <div class="stat">
+                <h3>Low Stock Items</h3>
+                <p class="stat-number">{{ low_stock_count }}</p>
+            </div>
+            <div class="stat">
+                <h3>Maintenance</h3>
+                <p class="stat-number">{{ pending_maintenance }}</p>
+            </div>
+
+            <div class="stat">
+                <h3>Head Count</h3>
+                <h4 class="stat-number" style="color:lightgreen; fontsize:1rem;" >{{ human_resources.count }}</h4>
+            </div>
+        </div>
+    </div>
+          <!-- Quick Actions -->
+          <div class="dashboard-section">
+            <div class="section-header">
+            </div>
+            <div class="quick-actions">
+                <a href="#" class="action-card">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Add New Project</span>
+                </a>
+                <a href="#" class="action-card">
+                    <i class="fas fa-truck-loading"></i>
+                    <span>Register Asset</span>
+                </a>
+                <a href="#" class="action-card">
+                    <i class="fas fa-boxes"></i>
+                    <span>Update Inventory</span>
+                </a>
+                <a href="#" class="action-card">
+                    <i class="fas fa-sms"></i>
+                    <span>Send SMS Alert</span>
+                </a>
+                <a href="#" class="action-card">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Generate Report</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- AI Assistant Section -->
+
+    <div class="assistant">
+        <div class="ai-assistant-card">
+            <h2><box-icon name='brain' size="50px" color="#3498db"></box-icon> AI Assistant</h2>
+            <div class="chat-container">
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message system-message">
+                        Hello! I'm Foreman, your AI assistant. Ask me about materials, asset locations, or procurement status.
+                    </div>
+                    <!-- Messages will be appended here -->
+                </div>
+                
+                <form id="ai-form">
+                    {% csrf_token %}
+                    <div class="chat-input">
+                        <input type="text" name="query" id="query" placeholder="Ask me anything..." required>
+                        <button type="submit"><box-icon name='send' color="#3498db" size="40px"></box-icon></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    document.getElementById('ai-form').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        
+        const query = document.getElementById('query').value;
+        const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        
+        // Show user message
+        const chatMessages = document.getElementById('chat-messages');
+        const userMessage = document.createElement('div');
+        userMessage.className = 'message user-message';
+        userMessage.textContent = query;
+        chatMessages.appendChild(userMessage);
+        
+        // Clear the input
+        document.getElementById('query').value = '';
+        
+        // Add loading message
+        const loadingMessage = document.createElement('div');
+        loadingMessage.className = 'message system-message';
+        loadingMessage.textContent = 'Thinking...';
+        chatMessages.appendChild(loadingMessage);
+        
+        // Send AJAX request
+        fetch('{% url "ai_assistant" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({
+                query: query
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Remove loading message
+            chatMessages.removeChild(loadingMessage);
+            
+            // Add AI response
+            const aiResponse = document.createElement('div');
+            aiResponse.className = 'message system-message';
+            aiResponse.textContent = data.response;
+            chatMessages.appendChild(aiResponse);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        })
+        .catch(error => {
+            // Remove loading message
+            chatMessages.removeChild(loadingMessage);
+            
+            // Add error message
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'message system-message error';
+            errorMessage.textContent = 'Sorry, something went wrong. Please try again.';
+            chatMessages.appendChild(errorMessage);
+            
+            console.error('Error:', error);
+        });
+    });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+    <!-- Main Dashboard Content -->
+    <div class="dashboard-content">
+        <!-- Sites Overview -->
+        <div class="dashboard-section">
+            <div class="section-header">
+                <h2>Projects</h2>
+            </div>
+            <div class="sites-grid">
+                {% for site in sites %}
+                <div class="site-card">
+                    <h3>{{ site.name }}</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> {{ site.location }}</p>
+                    <p><i class="fas fa-calendar"></i> {{ site.start_date|date:"M d, Y" }} - {{ site.end_date|date:"M d, Y" }}</p>
+                    <div class="site-actions">
+                        <a href="{% url 'site_detail' site.id %}" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No sites available. <a href="{% url "site_create" %}">Add a site</a></p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Assets Overview -->
+        <div class="dashboard-section">
+            <div class="section-header">
+                <h2>Assets</h2>
+            </div>
+            
+          
+            <div id="equipment" class="tab-content active">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Serial Number</th>
+                            <th>Site</th>
+                            <th>Maintenance Due</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for asset in assets %}
+                        <tr>
+                            <td>{{ asset.name }}</td>
+                            <td>{{ asset.serial_number }}</td>
+                            <td>{{ asset.site.name }}</td>
+                            <td class="{% if asset.maintenance_date|date:'Y-m-d' < today %}overdue{% endif %}">
+                                {{ asset.maintenance_date|date:"M d, Y" }}
+                            </td>
+                            <td>
+                                <a href="{% url 'asset_detail' asset.id %}" class="btn btn-sm">Details</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">No  assets available.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+       
+  
+<!-- JavaScript for tab switching -->
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // AI Assistant form submission
+        const aiForm = document.getElementById('ai-form');
+        const chatMessages = document.getElementById('chat-messages');
+        
+        aiForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const query = document.getElementById('query').value;
+            if (!query.trim()) return;
+            
+            // Add user message to chat
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = query;
+            chatMessages.appendChild(userMessage);
+            
+            // Clear input
+            document.getElementById('query').value = '';
+            
+            // Add loading message
+            const loadingMessage = document.createElement('div');
+            loadingMessage.className = 'message system-message loading';
+            loadingMessage.textContent = 'Processing your request...';
+            chatMessages.appendChild(loadingMessage);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Submit form via AJAX
+            fetch(aiForm.action, {
+                method: 'POST',
+                body: new FormData(aiForm),
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove loading message
+                chatMessages.removeChild(loadingMessage);
+                
+                // Add AI response
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'message system-message';
+                aiMessage.textContent = data.response;
+                chatMessages.appendChild(aiMessage);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            })
+            .catch(error => {
+                // Remove loading message
+                chatMessages.removeChild(loadingMessage);
+                
+                // Add error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'message system-message error';
+                errorMessage.textContent = 'Sorry, there was an error processing your request.';
+                chatMessages.appendChild(errorMessage);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        });
+    });
+    
+    
+    
+</script>
+{% endblock %}

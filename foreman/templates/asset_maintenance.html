@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+
+{% block title %}Schedule Maintenance - {{ asset.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3>Schedule Maintenance for {{ asset.name }}</h3>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="maintenance_date">Maintenance Date:</label>
+                            <input type="date" class="form-control" id="maintenance_date" 
+                                   name="maintenance_date" value="{{ suggested_date|date:'Y-m-d' }}" required>
+                            <small class="form-text text-muted">
+                                Suggested date is 7 days from today.
+                            </small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label>Asset Details:</label>
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>ID:</strong> {{ asset.id }}</li>
+                                    <li class="list-group-item"><strong>Name:</strong> {{ asset.name }}</li>
+                                    {% if asset.description %}
+                                        <li class="list-group-item"><strong>Description:</strong> {{ asset.description }}</li>
+                                    {% endif %}
+                                    {% if asset.maintenance_date %}
+                                        <li class="list-group-item"><strong>Current Maintenance Date:</strong> 
+                                            {{ asset.maintenance_date|date:"F j, Y" }}</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Schedule Maintenance</button>
+                            <a href="{% url 'asset_management' %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

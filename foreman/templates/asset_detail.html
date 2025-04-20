@@ -1,0 +1,114 @@
+{% extends '_base.html' %}
+
+{% block title %}Asset: {{ asset.name }}{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1>Asset Details</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'asset_management' %}">Assets</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ asset.name }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">{{ asset.name }}</h5>
+                    <span class="badge {% if asset.type == 'equipment' %}bg-success{% else %}bg-info{% endif %}">
+                        {{ asset.get_type_display }}
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Site:</strong> {{ asset.site.name }}</p>
+                            <p><strong>Units:</strong> {{ asset.units }}</p>
+                            <p><strong>Cost per Unit:</strong> ${{ asset.cost_per_unit|floatformat:2 }}</p>
+                            <p><strong>Assignment Date:</strong> {{ asset.assignment_date|date:"F d, Y" }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            {% if asset.type == 'equipment' %}
+                                <p><strong>Serial Number:</strong> {{ asset.serial_number|default:"N/A" }}</p>
+                            {% else %}
+                                <p><strong>Quantity in Stock:</strong> {{ asset.quantity_in_stock }}</p>
+                               
+                            {% endif %}
+                            <p><strong>Maintenance Date:</strong> 
+                                {% if asset.maintenance_date %}
+                                    {{ asset.maintenance_date|date:"F d, Y" }}
+                                {% else %}
+                                    Not scheduled
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    {% if asset.discription %}
+                        <div class="mt-3">
+                            <h6>Description</h6>
+                            <p class="card-text">{{ asset.discription }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group">
+                        <a href="{% url 'asset_update' asset.id %}" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Edit Asset
+                        </a>
+                        <a href="{% url 'asset_maintenance' asset.id %}" class="btn btn-primary">
+                            <i class="bi bi-tools"></i> Schedule Maintenance
+                        </a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <i class="bi bi-trash"></i> Delete Asset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Site Information</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Site Name:</strong> {{ asset.site.name }}</p>
+                    <p><strong>Location:</strong> {{ asset.site.location }}</p>
+                    <p><strong>Start Date:</strong> {{ asset.site.start_date|date:"F d, Y" }}</p>
+                    <p><strong>End Date:</strong> {{ asset.site.end_date|date:"F d, Y" }}</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">View All Site Assets</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete <strong>{{ asset.name }}</strong>? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{% url 'asset_delete' asset.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
