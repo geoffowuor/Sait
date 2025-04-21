@@ -67,7 +67,7 @@ def login_view(request):
 
 @login_required
 def dashboard(request):
-    sites= Site.objects.filter(owner=request.user) 
+    sites= Site.objects.filter(owner=request.user)
     assets = Asset.objects.filter(owner=request.user)
     human_resources = Human_resource.objects.filter(owner=request.user)
     return render(request, "dashboard.html", {"sites": sites,
@@ -113,10 +113,9 @@ def site_list(request):
 @login_required
 def site_create(request):
     if request.method == 'POST':
-        form = SiteForm(request.POST)
+        form = SiteForm(request.POST)   
         if form.is_valid():
-            site = form.save(commit=False) 
-            site.owner = request.user
+            site = form.save(commit=False)
             site.owner = request.user
             site.save()
             return redirect('site_list')
@@ -179,13 +178,10 @@ def site_detail(request, pk):
 def human_resource_list(request):
     # Get all human resources
     human_resources_list = Human_resource.objects.filter(owner=request.user)
-    
     # Get all sites for the filter dropdown
     sites = Site.objects.filter(owner=request.user)
-    
     # Get unique roles for the filter dropdown
     roles = Human_resource.objects.values_list('role', flat=True).distinct()
-    
     # Apply filters if provided
     site_filter = request.GET.get('site')
     role_filter = request.GET.get('role')
@@ -251,10 +247,8 @@ def delete_human_resource(request, pk):
 
 
 def asset_list(request):
-    # Get all sites for filter dropdown
     sites = Site.objects.filter(owner=request.user)
     asset_types = Asset.asset_types
-    # Get all assets with related site data (for efficient querying)
     assets_queryset = Asset.objects.select_related('site').all()
     # Apply filters
     site_id = request.GET.get('site', '')
@@ -274,7 +268,6 @@ def asset_list(request):
             Q(discription__icontains=search)
         )
     
-    # Calculate summary statistics
     total_assets = assets_queryset.count()
     equipment_count = assets_queryset.filter(type='equipment').count()
     material_count = assets_queryset.filter(type='material').count()
@@ -297,7 +290,7 @@ def asset_list(request):
     ).order_by('maintenance_date')
     
     # Pagination
-    paginator = Paginator(assets_queryset, 10)  # Show 10 assets per page
+    paginator = Paginator(assets_queryset, 10)
     page_number = request.GET.get('page')
     assets = paginator.get_page(page_number)
     
@@ -383,14 +376,9 @@ def asset_maintenance(request, pk):
             except ValueError:
                 messages.error(request, 'Invalid date format')
     
-    # Default to scheduling for 7 days from now
-    suggested_date = (timezone.now() + timezone.timedelta(days=7)).date()
+    suggested_date = (timezone.now() + timezone.timedelta(days=14)).date()
     
     return render(request, 'asset_maintenance.html', {
         'asset': asset,
         'suggested_date': suggested_date,
     })
-
-
-
-
