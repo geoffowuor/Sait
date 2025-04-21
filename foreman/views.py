@@ -348,7 +348,7 @@ def asset_update(request, pk):
     return render(request, 'asset_form.html', {
         'form': form,
         'asset': asset,
-        'title': f'Edit Asset: {asset.name}',
+        'title': f'Edit Asset: {asset.name}', 
     })
 
 def asset_delete(request, pk):
