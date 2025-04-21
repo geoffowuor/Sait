@@ -88,7 +88,7 @@
             <div class="card bg-warning text-dark">
                 <div class="card-body">
                     <h5 class="card-title">Total Value</h5>
-                    <h2 class="mb-0">${{ total_value|floatformat:2 }}</h2>
+                    <h2 class="mb-0">KES {{ total_value|floatformat:2 }}</h2>
                 </div>
             </div>
         </div>
@@ -140,7 +140,7 @@
                                                 {{ asset.quantity_in_stock }}
                                             {% endif %}
                                         </td>
-                                        <td>${{ asset.cost_per_unit|floatformat:2 }}</td>
+                                        <td>KES {{ asset.cost_per_unit|floatformat:2 }}</td>
                                         <td>{{ asset.assignment_date|date:"M d, Y" }}</td>
                                         <td>
                                             <div class="btn-group" role="group">

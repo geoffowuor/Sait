@@ -31,7 +31,8 @@
                         <div class="col-md-6">
                             <p><strong>Site:</strong> {{ asset.site.name }}</p>
                             <p><strong>Units:</strong> {{ asset.units }}</p>
-                            <p><strong>Cost per Unit:</strong> ${{ asset.cost_per_unit|floatformat:2 }}</p>
+                            <p><strong>Cost per Unit:</strong> 
+                                KES {{ asset.cost_per_unit|floatformat:2 }}</p>
                             <p><strong>Assignment Date:</strong> {{ asset.assignment_date|date:"F d, Y" }}</p>
                         </div>
                         <div class="col-md-6">

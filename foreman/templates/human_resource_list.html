@@ -75,7 +75,7 @@
                         <td class="py-3 px-4">{{ hr.site.name }}</td>
                         <td class="py-3 px-4">{{ hr.start_date|date:"m/d/Y" }}</td>
                         <td class="py-3 px-4">{{ hr.end_date|date:"m/d/Y" }}</td>
-                        <td class="py-3 px-4">${{ hr.salary }}</td>
+                        <td class="py-3 px-4">KES {{ hr.salary }}</td>
                         <td class="py-3 px-4">
                             <a href="{% url 'edit_human_resource' hr.id %}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
                             <a href="{% url 'delete_human_resource' hr.id %}" class="text-red-500 hover:text-red-700" onclick="return confirm('Are you sure you want to delete {{hr.name}}?')">Delete</a>
