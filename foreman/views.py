@@ -67,9 +67,9 @@ def login_view(request):
 
 @login_required
 def dashboard(request):
-    sites= Site.objects.all() 
-    assets = Asset.objects.all()
-    human_resources = Human_resource.objects.all()
+    sites= Site.objects.filter(owner=request.user) 
+    assets = Asset.objects.filter(owner=request.user)
+    human_resources = Human_resource.objects.filter(owner=request.user)
     return render(request, "dashboard.html", {"sites": sites,
                                               "assets": assets,
                                               "human_resources": human_resources})
@@ -107,7 +107,7 @@ def ai_assistant(request):
 
 @login_required
 def site_list(request):
-    sites = Site.objects.all()
+    sites = Site.objects.filter(owner=request.user)
     return render(request, 'site_list.html', {'sites': sites})
 
 @login_required
@@ -115,10 +115,13 @@ def site_create(request):
     if request.method == 'POST':
         form = SiteForm(request.POST)
         if form.is_valid():
-            form.save()
+            site = form.save(commit=False) 
+            site.owner = request.user
+            site.owner = request.user
+            site.save()
             return redirect('site_list')
     else:
-        form = SiteForm()
+        form = SiteForm(user=request.user)
     
     context = {
         'form': form,
@@ -134,7 +137,9 @@ def site_update(request, pk):
     if request.method == 'POST':
         form = SiteForm(request.POST, instance=site)
         if form.is_valid():
-            form.save()
+            site.owner = request.user
+            site.owner = request.user
+            site.save()
             return redirect('site_list')
     else:
         form = SiteForm(instance=site)
@@ -173,10 +178,10 @@ def site_detail(request, pk):
 @login_required
 def human_resource_list(request):
     # Get all human resources
-    human_resources_list = Human_resource.objects.all()
+    human_resources_list = Human_resource.objects.filter(owner=request.user)
     
     # Get all sites for the filter dropdown
-    sites = Site.objects.all()
+    sites = Site.objects.filter(owner=request.user)
     
     # Get unique roles for the filter dropdown
     roles = Human_resource.objects.values_list('role', flat=True).distinct()
@@ -212,10 +217,12 @@ def add_human_resource(request):
     if request.method == 'POST':
         form = HumanResourceForm(request.POST)
         if form.is_valid():
-            form.save()
+            human_resource = form.save(commit=False) 
+            human_resource.owner = request.user
+            human_resource.save()
             return redirect('human_resource_list')
     else:
-        form = HumanResourceForm()
+        form = HumanResourceForm(user=request.user)
     
     return render(request, 'human_resource_form.html', {'form': form, 'action': 'Add'})
 
@@ -225,7 +232,10 @@ def edit_human_resource(request, pk):
     if request.method == 'POST':
         form = HumanResourceForm(request.POST, instance=human_resource)
         if form.is_valid():
-            form.save()
+            human_resource= form.save(commit=False) 
+            human_resource.owner = request.user
+            human_resource.user = request.user
+            human_resource.save()
             return redirect('human_resource_list')
     else:
         form = HumanResourceForm(instance=human_resource)
@@ -241,15 +251,11 @@ def delete_human_resource(request, pk):
 
 
 def asset_list(request):
-    """View for listing and filtering assets"""
-    
     # Get all sites for filter dropdown
-    sites = Site.objects.all()
+    sites = Site.objects.filter(owner=request.user)
     asset_types = Asset.asset_types
-    
     # Get all assets with related site data (for efficient querying)
     assets_queryset = Asset.objects.select_related('site').all()
-    
     # Apply filters
     site_id = request.GET.get('site', '')
     asset_type = request.GET.get('type', '')
@@ -310,20 +316,21 @@ def asset_list(request):
     return render(request, 'asset_management.html', context)
 
 def asset_detail(request, pk):
-    """View for viewing a single asset's details"""
     asset = get_object_or_404(Asset, pk=pk)
     return render(request, 'asset_detail.html', {'asset': asset})
 
 def asset_create(request):
-    """View for creating a new asset"""
     if request.method == 'POST':
         form = AssetForm(request.POST)
         if form.is_valid():
+            asset = form.save(commit=False) 
+            asset.owner = request.user
+            asset.user = request.user
             asset = form.save()
             messages.success(request, f'Asset "{asset.name}" created successfully!')
             return redirect('asset_management')
     else:
-        form = AssetForm()
+        form = AssetForm(user=request.user)
     
     return render(request, 'asset_form.html', {
         'form': form,
@@ -331,12 +338,14 @@ def asset_create(request):
     })
 
 def asset_update(request, pk):
-    """View for updating an existing asset"""
     asset = get_object_or_404(Asset, pk=pk)
     
     if request.method == 'POST':
         form = AssetForm(request.POST, instance=asset)
         if form.is_valid():
+            asset = form.save(commit=False) 
+            asset.user = request.user
+            asset.owner = request.user
             asset = form.save()
             messages.success(request, f'Asset "{asset.name}" updated successfully!')
             return redirect('asset_management')
@@ -350,7 +359,6 @@ def asset_update(request, pk):
     })
 
 def asset_delete(request, pk):
-    """View for deleting an asset"""
     asset = get_object_or_404(Asset, pk=pk)
     
     if request.method == 'POST':
@@ -362,7 +370,6 @@ def asset_delete(request, pk):
     return render(request, 'asset_confirm_delete.html', {'asset': asset})
 
 def asset_maintenance(request, pk):
-    """View for scheduling maintenance for an asset"""
     asset = get_object_or_404(Asset, pk=pk)
     
     if request.method == 'POST':

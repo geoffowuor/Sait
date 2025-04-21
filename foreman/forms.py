@@ -1,6 +1,7 @@
 # core/forms.py
 from django import forms
 from .models import Site, Asset,chat, Human_resource
+from django.utils import timezone
 
 class AIAssistantForm(forms.Form):
     query = forms.CharField(max_length=500, required=True, widget=forms.TextInput(attrs={'placeholder': 'Ask your question here...'}))
@@ -17,6 +18,9 @@ class SiteForm(forms.ModelForm):
             'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
         
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)  
+        super().__init__(*args, **kwargs)
 class HumanResourceForm(forms.ModelForm):
     class Meta:
         model = Human_resource                                                                                                                                                       
@@ -47,10 +51,14 @@ class HumanResourceForm(forms.ModelForm):
                 'type': 'date',
             }),
         }
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  
+        super().__init__(*args, **kwargs)
+    
+        if user is not None:
+           self.fields['site'].queryset = Site.objects.filter(owner=user)
         
-        
-        
-from django.utils import timezone
+
 
 class AssetForm(forms.ModelForm):
     class Meta:
@@ -70,12 +78,18 @@ class AssetForm(forms.ModelForm):
             'assignment_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'discription': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
+        
+
+
     
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None) 
         super().__init__(*args, **kwargs)
         # Set initial date if creating a new asset
         if not kwargs.get('instance'):
             self.fields['assignment_date'].initial = timezone.now().date()
+            self.fields['site'].queryset = Site.objects.filter(owner=self.user)
+            
             
         # Make fields dynamically required or hidden based on asset type
         self.fields['serial_number'].required = False
