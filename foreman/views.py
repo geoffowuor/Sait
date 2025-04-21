@@ -309,7 +309,7 @@ def asset_list(request):
     return render(request, 'asset_management.html', context)
 
 def asset_detail(request, pk):
-    asset = get_object_or_404(Asset, pk=pk)
+    asset = get_object_or_404(Asset,User, pk=pk)
     return render(request, 'asset_detail.html', {'asset': asset})
 
 def asset_create(request):
@@ -318,7 +318,6 @@ def asset_create(request):
         if form.is_valid():
             asset = form.save(commit=False) 
             asset.owner = request.user
-            asset.user = request.user
             asset = form.save()
             messages.success(request, f'Asset "{asset.name}" created successfully!')
             return redirect('asset_management')
@@ -338,7 +337,6 @@ def asset_update(request, pk):
         if form.is_valid():
             asset = form.save(commit=False) 
             asset.user = request.user
-            asset.owner = request.user
             asset = form.save()
             messages.success(request, f'Asset "{asset.name}" updated successfully!')
             return redirect('asset_management')

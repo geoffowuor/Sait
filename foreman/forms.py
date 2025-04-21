@@ -79,7 +79,11 @@ class AssetForm(forms.ModelForm):
             'discription': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
         
-
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None) 
+        super().__init__(*args, **kwargs)
+        if self.user is not None:
+            self.fields['site'].queryset = Site.objects.filter(owner=self.user)
 
     
     def __init__(self, *args, **kwargs):
@@ -88,8 +92,6 @@ class AssetForm(forms.ModelForm):
         # Set initial date if creating a new asset
         if not kwargs.get('instance'):
             self.fields['assignment_date'].initial = timezone.now().date()
-            self.fields['site'].queryset = Site.objects.filter(owner=self.user)
-            
             
         # Make fields dynamically required or hidden based on asset type
         self.fields['serial_number'].required = False
