@@ -87,10 +87,11 @@ def ai_assistant(request):
                 import google.generativeai as genai
                 genai.configure(api_key=os.environ.get('GOOGLE_API_KEY'))
                 
+                
                 model = genai.GenerativeModel('gemini-2.0-flash')
                 
                 plain_text_query = (
-                    f"You are a construction site manager and expert assitant,you know everything about construction sites,your name is Foreman. Only answer things related to construction sites and project management.You were made and trained by Geoffrey "
+                    f"You are a construction site manager and expert assitant,you know everything about construction sites,your name is Foreman. Only answer things related to construction  and project management.You were made and trained by Geoffrey "
                     f"Please respond in plain text only. Do not use any markdown, symbols like *, or HTML tags. and please list where necessary,don't just use blocked paragraph and please also paragraph your work clead typography and be very polite"
                     f"Just write polite, easy-to-read and proffesional response with no formatting. Question: {query}"
                 )
@@ -137,7 +138,6 @@ def site_update(request, pk):
         form = SiteForm(request.POST, instance=site)
         if form.is_valid():
             site.owner = request.user
-            site.owner = request.user
             site.save()
             return redirect('site_list')
     else:
@@ -156,7 +156,7 @@ def site_delete(request, pk):
     if request.method == 'POST':
         site.delete()
         return redirect('site_list')
-    
+
     return render(request, 'site_confirm_delete.html', {'object': site})
 
 
@@ -309,7 +309,7 @@ def asset_list(request):
     return render(request, 'asset_management.html', context)
 
 def asset_detail(request, pk):
-    asset = get_object_or_404(Asset,User, pk=pk)
+    asset = get_object_or_404(Asset, pk=pk)
     return render(request, 'asset_detail.html', {'asset': asset})
 
 def asset_create(request):

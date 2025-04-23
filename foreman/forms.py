@@ -24,7 +24,7 @@ class SiteForm(forms.ModelForm):
 class HumanResourceForm(forms.ModelForm):
     class Meta:
         model = Human_resource                                                                                                                                                       
-        fields = ['site', 'name', 'role', 'start_date', 'end_date', 'salary']
+        fields = ['site', 'name', 'phone_number', 'role', 'start_date', 'end_date', 'salary']
         widgets = {
             'site': forms.Select(attrs={                                                                                                                                
                 'class': 'form-select',
@@ -32,6 +32,11 @@ class HumanResourceForm(forms.ModelForm):
             'name': forms.TextInput(attrs={
                 'class': 'form-input',
                 'placeholder': 'Enter employee name',
+            }),
+            'phone_number': forms.TextInput(attrs={
+                'class': 'form-input',
+                'placeholder':'Enter Emloyee Phone number(+2547123456789)',
+
             }),
             'role': forms.TextInput(attrs={
                 'class': 'form-input',

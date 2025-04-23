@@ -41,6 +41,7 @@ class Human_resource(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     salary = models.DecimalField(max_digits=10, decimal_places=2)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='human_resources',null=True, blank=True)
     
     def __str__(self):

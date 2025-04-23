@@ -1,0 +1,113 @@
+DEBUG 2025-04-23 14:11:37,503 africas_talking_sms Asset signal triggered: created=True, asset_id=15
+INFO 2025-04-23 14:11:37,504 africas_talking_sms New asset created: Truck (ID: 15)
+DEBUG 2025-04-23 14:11:37,508 africas_talking_sms No owner phone number found for site Demo
+DEBUG 2025-04-23 14:11:37,508 africas_talking_sms No default recipients configured in settings
+INFO 2025-04-23 14:11:37,508 africas_talking_sms Found 1 recipients for site Demo: ['0793525583']
+INFO 2025-04-23 14:11:37,509 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-23 14:11:37,509 africas_talking_sms Attempting to send SMS to ['+254793525583']
+ERROR 2025-04-23 14:11:38,180 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+INFO 2025-04-23 14:47:49,521 africas_talking_sms Asset deleted: Truck (ID: 15)
+DEBUG 2025-04-23 14:47:49,534 africas_talking_sms No owner phone number found for site Demo
+DEBUG 2025-04-23 14:47:49,535 africas_talking_sms No default recipients configured in settings
+INFO 2025-04-23 14:47:49,535 africas_talking_sms Found 1 recipients for site Demo: ['0793525583']
+INFO 2025-04-23 14:47:49,535 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-23 14:47:49,536 africas_talking_sms Attempting to send SMS to ['+254793525583']
+ERROR 2025-04-23 14:47:50,213 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+DEBUG 2025-04-23 14:51:29,614 africas_talking_sms Asset signal triggered: created=True, asset_id=16
+INFO 2025-04-23 14:51:29,615 africas_talking_sms New asset created: Truck (ID: 16)
+DEBUG 2025-04-23 14:51:29,620 africas_talking_sms No owner phone number found for site Demo
+DEBUG 2025-04-23 14:51:29,621 africas_talking_sms No default recipients configured in settings
+INFO 2025-04-23 14:51:29,621 africas_talking_sms Found 1 recipients for site Demo: ['0793525583']
+INFO 2025-04-23 14:51:29,622 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-23 14:51:29,622 africas_talking_sms Attempting to send SMS to ['+254793525583']
+ERROR 2025-04-23 14:51:30,579 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+INFO 2025-04-23 14:55:58,134 africas_talking_sms Asset deleted: Truck (ID: 16)
+DEBUG 2025-04-23 14:55:58,145 africas_talking_sms No owner phone number found for site Demo
+DEBUG 2025-04-23 14:55:58,146 africas_talking_sms No default recipients configured in settings
+INFO 2025-04-23 14:55:58,146 africas_talking_sms Found 1 recipients for site Demo: ['0793525583']
+INFO 2025-04-23 14:55:58,147 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-23 14:55:58,147 africas_talking_sms Attempting to send SMS to ['+254793525583']
+ERROR 2025-04-23 14:55:58,866 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+DEBUG 2025-04-23 15:01:54,140 africas_talking_sms Asset signal triggered: created=True, asset_id=17
+INFO 2025-04-23 15:01:54,141 africas_talking_sms New asset created: Truck (ID: 17)
+DEBUG 2025-04-23 15:01:54,144 africas_talking_sms No owner phone number found for site Demo
+DEBUG 2025-04-23 15:01:54,144 africas_talking_sms No default recipients configured in settings
+INFO 2025-04-23 15:01:54,144 africas_talking_sms Found 1 recipients for site Demo: ['0793525583']
+INFO 2025-04-23 15:01:54,144 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-23 15:01:54,144 africas_talking_sms Attempting to send SMS to ['+254793525583']
+ERROR 2025-04-23 15:02:01,349 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+INFO 2025-04-23 15:06:04,802 africas_talking_sms Asset deleted: Truck (ID: 17)
+DEBUG 2025-04-23 15:06:04,809 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:06:04,813 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:06:04,815 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-23 15:06:04,817 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+ERROR 2025-04-23 15:06:05,696 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+DEBUG 2025-04-23 15:10:57,106 africas_talking_sms Asset signal triggered: created=True, asset_id=18
+INFO 2025-04-23 15:10:57,107 africas_talking_sms New asset created: Truck (ID: 18)
+DEBUG 2025-04-23 15:10:57,109 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:10:57,109 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:10:57,110 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-23 15:10:57,110 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+ERROR 2025-04-23 15:11:17,712 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+INFO 2025-04-23 15:13:18,156 africas_talking_sms Asset deleted: Truck (ID: 18)
+DEBUG 2025-04-23 15:13:18,168 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:13:18,169 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:13:18,170 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-23 15:13:18,171 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+ERROR 2025-04-23 15:13:18,855 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+DEBUG 2025-04-23 15:14:15,162 africas_talking_sms Asset signal triggered: created=True, asset_id=19
+INFO 2025-04-23 15:14:15,162 africas_talking_sms New asset created: Truck (ID: 19)
+DEBUG 2025-04-23 15:14:15,166 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:14:15,166 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:14:15,167 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-23 15:14:15,167 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+ERROR 2025-04-23 15:14:15,892 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+INFO 2025-04-23 15:20:06,815 africas_talking_sms Loading initial asset quantities
+INFO 2025-04-23 15:20:06,823 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-04-23 15:22:47,962 africas_talking_sms Loading initial asset quantities
+INFO 2025-04-23 15:22:47,967 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-04-23 15:23:34,107 africas_talking_sms Asset deleted: Truck (ID: 19)
+DEBUG 2025-04-23 15:23:34,123 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:23:34,124 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:23:34,125 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-23 15:23:34,126 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+ERROR 2025-04-23 15:23:41,019 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+DEBUG 2025-04-23 15:32:26,527 africas_talking_sms Asset signal triggered: created=True, asset_id=20
+INFO 2025-04-23 15:32:26,528 africas_talking_sms New asset created: Truck (ID: 20)
+DEBUG 2025-04-23 15:32:26,541 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:32:26,541 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:32:26,541 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-23 15:32:26,542 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-23 15:32:29,946 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000 Message parts: 1', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_6e01e105e2187a6bbf29de81ce509925', 'number': '+254793525583', 'status': 'Success', 'statusCode': 101}]}}
+INFO 2025-04-23 15:33:56,951 africas_talking_sms Asset deleted: Truck (ID: 20)
+DEBUG 2025-04-23 15:33:56,966 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:33:56,966 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:33:56,967 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-23 15:33:56,967 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+ERROR 2025-04-23 15:34:11,994 africas_talking_sms Failed to send SMS: HTTPSConnectionPool(host='api.sandbox.africastalking.com', port=443): Max retries exceeded with url: /version1/messaging (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x71189b60e270>: Failed to resolve 'api.sandbox.africastalking.com' ([Errno -3] Temporary failure in name resolution)"))
+DEBUG 2025-04-23 15:37:57,864 africas_talking_sms Asset signal triggered: created=True, asset_id=21
+INFO 2025-04-23 15:37:57,865 africas_talking_sms New asset created: Truck (ID: 21)
+DEBUG 2025-04-23 15:37:57,876 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:37:57,877 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:37:57,877 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-23 15:37:57,878 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+ERROR 2025-04-23 15:37:57,879 africas_talking_sms Failed to send SMS: module 'africastalking' has no attribute 'configure'
+INFO 2025-04-23 15:40:19,826 africas_talking_sms Asset deleted: Truck (ID: 21)
+DEBUG 2025-04-23 15:40:19,836 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:40:19,838 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:40:19,839 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-23 15:40:19,840 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+ERROR 2025-04-23 15:40:23,803 africas_talking_sms Failed to send SMS: The supplied authentication is invalid
+DEBUG 2025-04-23 15:42:26,513 africas_talking_sms Asset signal triggered: created=True, asset_id=22
+INFO 2025-04-23 15:42:26,513 africas_talking_sms New asset created: Truck (ID: 22)
+DEBUG 2025-04-23 15:42:26,520 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:42:26,521 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:42:26,521 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-23 15:42:26,521 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-23 15:42:29,161 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000 Message parts: 1', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_cb72cadbe11c61437dc212a20c62cd4e', 'number': '+254793525583', 'status': 'Success', 'statusCode': 101}]}}
+INFO 2025-04-23 15:45:43,315 africas_talking_sms Asset deleted: Truck (ID: 22)
+DEBUG 2025-04-23 15:45:43,326 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-23 15:45:43,329 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-23 15:45:43,330 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-23 15:45:43,332 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-23 15:45:44,172 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000 Message parts: 1', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_0c29ebcb13b1a1094ed93fde7bfda276', 'number': '+254793525583', 'status': 'Success', 'statusCode': 101}]}}

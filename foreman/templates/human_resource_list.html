@@ -61,6 +61,7 @@
                         <th class="py-3 px-4 text-left">Name</th>
                         <th class="py-3 px-4 text-left">Role</th>
                         <th class="py-3 px-4 text-left">Site</th>
+                        <th class="py-3 px-4 text-left">Phone</th>
                         <th class="py-3 px-4 text-left">Start Date</th>
                         <th class="py-3 px-4 text-left">End Date</th>
                         <th class="py-3 px-4 text-left">Salary</th>
@@ -73,6 +74,7 @@
                         <td class="py-3 px-4">{{ hr.name }}</td>
                         <td class="py-3 px-4">{{ hr.role }}</td>
                         <td class="py-3 px-4">{{ hr.site.name }}</td>
+                        <td class="py-3 px-4">{{ hr.phone_number }}</td>
                         <td class="py-3 px-4">{{ hr.start_date|date:"m/d/Y" }}</td>
                         <td class="py-3 px-4">{{ hr.end_date|date:"m/d/Y" }}</td>
                         <td class="py-3 px-4">KES {{ hr.salary }}</td>

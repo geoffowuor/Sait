@@ -12,11 +12,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-from dotenv import load_dotenv
+
 
 # Load environment variables from .env file - make sure this is at the top
 load_dotenv()
@@ -127,14 +127,52 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+
+
+
+# AT config
+AFRICASTALKING_USERNAME = 'sandbox'
+INVENTORY_ALERT_RECIPIENTS = ['+254793525583'] 
+
+# Configure logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'foreman': {  
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Get API keys from environment variables
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
-DEEP_SEEK_API_KEY = os.environ.get('DEEP_SEEK_API_KEY')
+AFRICASTALKING_API_KEY = os.environ.get('AFRICASTALKING_API_KEY')
+
 
 
 
