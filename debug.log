@@ -111,3 +111,143 @@ INFO 2025-04-23 15:45:43,329 africas_talking_sms Found 2 recipients for site Dem
 INFO 2025-04-23 15:45:43,330 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
 INFO 2025-04-23 15:45:43,332 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
 INFO 2025-04-23 15:45:44,172 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000 Message parts: 1', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_0c29ebcb13b1a1094ed93fde7bfda276', 'number': '+254793525583', 'status': 'Success', 'statusCode': 101}]}}
+INFO 2025-04-24 07:02:39,379 africas_talking_sms Loading initial asset quantities
+INFO 2025-04-24 07:02:39,489 africas_talking_sms Loaded 1 asset quantities successfully
+DEBUG 2025-04-24 09:50:37,997 africas_talking_sms Human resource signal triggered: created=True, hr_id=10
+INFO 2025-04-24 09:50:37,997 africas_talking_sms New human resource created: John Doe (ID: 10)
+DEBUG 2025-04-24 09:50:38,001 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 09:50:38,001 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-24 09:50:38,001 africas_talking_sms Sending SMS alert for created event - human resource: John Doe, message: PERSONNEL ALERT: New Supplier 'John Doe' added to staff at Demo. Contact: 0793525583
+INFO 2025-04-24 09:50:38,001 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-24 09:50:39,062 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000 Message parts: 1', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_7f68f903c9d497e39bb321cb979de92c', 'number': '+254793525583', 'status': 'Success', 'statusCode': 101}]}}
+INFO 2025-04-24 11:57:05,498 africas_talking_sms Loading initial asset quantities
+INFO 2025-04-24 11:57:05,501 africas_talking_sms Loaded 1 asset quantities successfully
+INFO 2025-04-24 11:58:59,841 africas_talking_sms Loading initial asset quantities
+INFO 2025-04-24 11:58:59,844 africas_talking_sms Loaded 1 asset quantities successfully
+DEBUG 2025-04-24 12:20:51,843 africas_talking_sms Human resource signal triggered: created=True, hr_id=11
+INFO 2025-04-24 12:20:51,843 africas_talking_sms New human resource created: Truck (ID: 11)
+DEBUG 2025-04-24 12:20:51,845 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 12:20:51,846 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-24 12:20:51,846 africas_talking_sms Sending SMS alert for created event - human resource: Truck, message: PERSONNEL ALERT: New Supplier 'Truck' added to staff at Demo. Contact: 0793525583
+INFO 2025-04-24 12:20:51,846 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-24 12:20:53,408 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 0/1 Total Cost: 0', 'Recipients': [{'cost': '0', 'messageId': 'None', 'number': '+254793525583', 'status': 'InsufficientBalance', 'statusCode': 405}]}}
+DEBUG 2025-04-24 12:22:28,310 africas_talking_sms Asset signal triggered: created=True, asset_id=23
+INFO 2025-04-24 12:22:28,311 africas_talking_sms New asset created: Test (ID: 23)
+DEBUG 2025-04-24 12:22:28,316 africas_talking_sms No owner phone number found for site Jivanjee
+INFO 2025-04-24 12:22:28,317 africas_talking_sms Found 2 recipients for site Jivanjee: ['0790060139', '+254793525583']
+INFO 2025-04-24 12:22:28,318 africas_talking_sms Sending SMS alert for created event - asset: Test, message: INVENTORY ALERT: New equipment 'Test' added to inventory at Jivanjee. Quantity: 0 1. S/N: 1
+INFO 2025-04-24 12:22:28,318 africas_talking_sms Attempting to send SMS to ['+254790060139', '+254793525583']
+INFO 2025-04-24 12:22:29,127 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 0/2 Total Cost: 0', 'Recipients': [{'cost': '0', 'messageId': 'None', 'number': '+254790060139', 'status': 'InsufficientBalance', 'statusCode': 405}, {'cost': '0', 'messageId': 'None', 'number': '+254793525583', 'status': 'InsufficientBalance', 'statusCode': 405}]}}
+DEBUG 2025-04-24 12:35:53,515 africas_talking_sms Asset signal triggered: created=True, asset_id=24
+INFO 2025-04-24 12:35:53,515 africas_talking_sms New asset created: Truck (ID: 24)
+DEBUG 2025-04-24 12:35:53,518 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 12:35:53,518 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-24 12:35:53,518 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 12
+INFO 2025-04-24 12:35:53,518 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-24 12:35:54,210 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 0/1 Total Cost: 0', 'Recipients': [{'cost': '0', 'messageId': 'None', 'number': '+254793525583', 'status': 'UserInBlacklist', 'statusCode': 406}]}}
+INFO 2025-04-24 12:38:04,354 africas_talking_sms Asset deleted: Truck (ID: 24)
+DEBUG 2025-04-24 12:38:04,356 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 12:38:04,356 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-24 12:38:04,356 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-24 12:38:04,357 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-24 12:38:05,303 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 0/1 Total Cost: 0', 'Recipients': [{'cost': '0', 'messageId': 'None', 'number': '+254793525583', 'status': 'UserInBlacklist', 'statusCode': 406}]}}
+INFO 2025-04-24 12:38:16,345 africas_talking_sms Asset deleted: Truck (ID: 10)
+DEBUG 2025-04-24 12:38:16,348 africas_talking_sms No owner phone number found for site Jivanjee
+INFO 2025-04-24 12:38:16,349 africas_talking_sms Found 2 recipients for site Jivanjee: ['0790060139', '+254793525583']
+INFO 2025-04-24 12:38:16,349 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Jivanjee. Previous quantity: 0 1
+INFO 2025-04-24 12:38:16,349 africas_talking_sms Attempting to send SMS to ['+254790060139', '+254793525583']
+INFO 2025-04-24 12:38:16,954 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 0/2 Total Cost: 0', 'Recipients': [{'cost': '0', 'messageId': 'None', 'number': '+254790060139', 'status': 'UserInBlacklist', 'statusCode': 406}, {'cost': '0', 'messageId': 'None', 'number': '+254793525583', 'status': 'UserInBlacklist', 'statusCode': 406}]}}
+INFO 2025-04-24 12:40:14,009 africas_talking_sms Asset deleted: Test (ID: 23)
+DEBUG 2025-04-24 12:40:14,011 africas_talking_sms No owner phone number found for site Jivanjee
+INFO 2025-04-24 12:40:14,012 africas_talking_sms Found 2 recipients for site Jivanjee: ['0790060139', '+254793525583']
+INFO 2025-04-24 12:40:14,012 africas_talking_sms Sending SMS alert for deleted event - asset: Test, message: INVENTORY ALERT: Equipment 'Test' COMPLETELY REMOVED from inventory at Jivanjee. Previous quantity: 0 1
+INFO 2025-04-24 12:40:14,012 africas_talking_sms Attempting to send SMS to ['+254790060139', '+254793525583']
+INFO 2025-04-24 12:40:15,125 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 0/2 Total Cost: 0', 'Recipients': [{'cost': '0', 'messageId': 'None', 'number': '+254790060139', 'status': 'UserInBlacklist', 'statusCode': 406}, {'cost': '0', 'messageId': 'None', 'number': '+254793525583', 'status': 'UserInBlacklist', 'statusCode': 406}]}}
+DEBUG 2025-04-24 12:55:38,476 africas_talking_sms Asset signal triggered: created=True, asset_id=25
+INFO 2025-04-24 12:55:38,476 africas_talking_sms New asset created: Truck (ID: 25)
+DEBUG 2025-04-24 12:55:38,479 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 12:55:38,479 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-24 12:55:38,480 africas_talking_sms Sending SMS alert for created event - asset: Truck, message: INVENTORY ALERT: New equipment 'Truck' added to inventory at Demo. Quantity: 0 1. S/N: 1
+INFO 2025-04-24 12:55:38,480 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-24 12:55:39,401 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_ac95cf5252d3031fc2b8f52a994de4f0', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+DEBUG 2025-04-24 12:59:15,615 africas_talking_sms Asset signal triggered: created=True, asset_id=26
+INFO 2025-04-24 12:59:15,615 africas_talking_sms New asset created: Test (ID: 26)
+DEBUG 2025-04-24 12:59:15,617 africas_talking_sms No owner phone number found for site Jivanjee
+INFO 2025-04-24 12:59:15,617 africas_talking_sms Found 2 recipients for site Jivanjee: ['0790060139', '+254793525583']
+INFO 2025-04-24 12:59:15,617 africas_talking_sms Sending SMS alert for created event - asset: Test, message: INVENTORY ALERT: New equipment 'Test' added to inventory at Jivanjee. Quantity: 0 1. S/N: 1
+INFO 2025-04-24 12:59:15,618 africas_talking_sms Attempting to send SMS to ['+254790060139', '+254793525583']
+INFO 2025-04-24 12:59:16,388 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_8efa316eb2b6fa2818b1714cf923ac70', 'messageParts': 1, 'number': '+254790060139', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_e3f07c05392b193839211e85ffd25671', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+INFO 2025-04-24 13:24:55,906 africas_talking_sms Human resource deleted: Truck (ID: 11)
+DEBUG 2025-04-24 13:24:55,908 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 13:24:55,908 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-24 13:24:55,908 africas_talking_sms Sending SMS alert for deleted event - human resource: Truck, message: PERSONNEL ALERT: Supplier 'Truck' REMOVED from staff at Demo.
+INFO 2025-04-24 13:24:55,909 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-24 13:24:57,027 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_ce615755584d287b2edb417c1c2e1ae8', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+DEBUG 2025-04-24 13:33:01,879 africas_talking_sms Asset signal triggered: created=True, asset_id=27
+INFO 2025-04-24 13:33:01,880 africas_talking_sms New asset created: 2 (ID: 27)
+DEBUG 2025-04-24 13:33:01,883 africas_talking_sms No owner phone number found for site Jivanjee
+INFO 2025-04-24 13:33:01,884 africas_talking_sms Found 2 recipients for site Jivanjee: ['0790060139', '+254793525583']
+INFO 2025-04-24 13:33:01,884 africas_talking_sms Sending SMS alert for created event - asset: 2, message: INVENTORY ALERT: New equipment '2' added to inventory at Jivanjee. Quantity: 0 2. S/N: 2
+INFO 2025-04-24 13:33:01,884 africas_talking_sms Attempting to send SMS to ['+254790060139', '+254793525583']
+INFO 2025-04-24 13:33:02,820 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_67db11ccf98536113b831d411accc40c', 'messageParts': 1, 'number': '+254790060139', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_eaeddd8f45fecad7cb46dd484a23e2c3', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+DEBUG 2025-04-24 13:48:44,457 africas_talking_sms Human resource signal triggered: created=True, hr_id=12
+INFO 2025-04-24 13:48:44,457 africas_talking_sms New human resource created: Kasongo Bolingo (ID: 12)
+DEBUG 2025-04-24 13:48:44,459 africas_talking_sms No owner phone number found for site Kapsowar
+INFO 2025-04-24 13:48:44,459 africas_talking_sms Found 2 recipients for site Kapsowar: ['0793525583', '+254793525583']
+INFO 2025-04-24 13:48:44,459 africas_talking_sms Sending SMS alert for created event - human resource: Kasongo Bolingo, message: PERSONNEL ALERT: New Project Manager 'Kasongo Bolingo' added to staff at Kapsowar. Contact: 0793525583
+INFO 2025-04-24 13:48:44,460 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-24 13:48:45,434 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_8a3b51315da3af8fb0d981abb97bf34c', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+INFO 2025-04-24 14:16:49,679 africas_talking_sms Loading initial asset quantities
+INFO 2025-04-24 14:16:49,696 africas_talking_sms Loaded 3 asset quantities successfully
+INFO 2025-04-24 15:19:08,512 africas_talking_sms Asset deleted: Truck (ID: 25)
+DEBUG 2025-04-24 15:19:08,551 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 15:19:08,551 africas_talking_sms Found 2 recipients for site Demo: ['0793525583', '+254793525583']
+INFO 2025-04-24 15:19:08,552 africas_talking_sms Sending SMS alert for deleted event - asset: Truck, message: INVENTORY ALERT: Equipment 'Truck' COMPLETELY REMOVED from inventory at Demo. Previous quantity: 0 1
+INFO 2025-04-24 15:19:08,552 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254793525583']
+INFO 2025-04-24 15:19:09,326 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_4e436e6e351663321d5c16fcfecfac2a', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+INFO 2025-04-24 15:19:09,327 africas_talking_sms Human resource deleted: John Doe (ID: 10)
+DEBUG 2025-04-24 15:19:09,329 africas_talking_sms No manager phone numbers found for site Demo
+DEBUG 2025-04-24 15:19:09,330 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 15:19:09,330 africas_talking_sms Found 1 recipients for site Demo: ['+254793525583']
+INFO 2025-04-24 15:19:09,330 africas_talking_sms Sending SMS alert for deleted event - human resource: John Doe, message: PERSONNEL ALERT: Supplier 'John Doe' REMOVED from staff at Demo.
+INFO 2025-04-24 15:19:09,330 africas_talking_sms Attempting to send SMS to ['+254793525583']
+INFO 2025-04-24 15:19:09,940 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_ad96dd4bc8cdcb5141ba59496bf8cd9d', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+INFO 2025-04-24 15:19:09,940 africas_talking_sms Human resource deleted: John Doe (ID: 2)
+DEBUG 2025-04-24 15:19:09,942 africas_talking_sms No manager phone numbers found for site Demo
+DEBUG 2025-04-24 15:19:09,942 africas_talking_sms No owner phone number found for site Demo
+INFO 2025-04-24 15:19:09,974 africas_talking_sms Found 1 recipients for site Demo: ['+254793525583']
+INFO 2025-04-24 15:19:09,974 africas_talking_sms Sending SMS alert for deleted event - human resource: John Doe, message: PERSONNEL ALERT: Project manager 'John Doe' REMOVED from staff at Demo.
+INFO 2025-04-24 15:19:09,975 africas_talking_sms Attempting to send SMS to ['+254793525583']
+INFO 2025-04-24 15:19:10,657 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 1/1 Total Cost: KES 0.8000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_7cf907f3ac5a0473daa93e17363be791', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+DEBUG 2025-04-24 17:11:43,545 africas_talking_sms Human resource signal triggered: created=True, hr_id=13
+INFO 2025-04-24 17:11:43,545 africas_talking_sms New human resource created: Samantha (ID: 13)
+DEBUG 2025-04-24 17:11:43,550 africas_talking_sms No owner phone number found for site Kapsowar
+INFO 2025-04-24 17:11:43,551 africas_talking_sms Found 3 recipients for site Kapsowar: ['0793525583', '0790060139', '+254793525583']
+INFO 2025-04-24 17:11:43,551 africas_talking_sms Sending SMS alert for created event - human resource: Samantha, message: PERSONNEL ALERT: New site manager 'Samantha' added to staff at Kapsowar. Contact: 0790060139
+INFO 2025-04-24 17:11:43,552 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254790060139', '+254793525583']
+INFO 2025-04-24 17:11:44,550 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_08cda0a7f1379e92956b799a5662d4cc', 'messageParts': 1, 'number': '+254790060139', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_8c800e8610f9cd474f28565463711ed6', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+DEBUG 2025-04-24 17:11:52,079 africas_talking_sms Human resource signal triggered: created=True, hr_id=14
+INFO 2025-04-24 17:11:52,079 africas_talking_sms New human resource created: Samantha (ID: 14)
+DEBUG 2025-04-24 17:11:52,085 africas_talking_sms No owner phone number found for site Kapsowar
+INFO 2025-04-24 17:11:52,086 africas_talking_sms Found 3 recipients for site Kapsowar: ['0793525583', '0790060139', '+254793525583']
+INFO 2025-04-24 17:11:52,087 africas_talking_sms Sending SMS alert for created event - human resource: Samantha, message: PERSONNEL ALERT: New site manager 'Samantha' added to staff at Kapsowar. Contact: 0790060139
+INFO 2025-04-24 17:11:52,087 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254790060139', '+254793525583']
+INFO 2025-04-24 17:11:53,035 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_e33d1f70e0fb9d20ad1a824917281b12', 'messageParts': 1, 'number': '+254790060139', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_ce4d231142893697bc6d5a9cf0cccf22', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+DEBUG 2025-04-24 18:36:16,225 africas_talking_sms Human resource signal triggered: created=True, hr_id=15
+INFO 2025-04-24 18:36:16,250 africas_talking_sms New human resource created: Kasongo (ID: 15)
+DEBUG 2025-04-24 18:36:16,547 africas_talking_sms Human resource signal triggered: created=True, hr_id=16
+INFO 2025-04-24 18:36:16,548 africas_talking_sms New human resource created: Kasongo (ID: 16)
+DEBUG 2025-04-24 18:36:16,550 africas_talking_sms No owner phone number found for site Baraka
+INFO 2025-04-24 18:36:16,550 africas_talking_sms Found 2 recipients for site Baraka: ['0715322600', '+254793525583']
+INFO 2025-04-24 18:36:16,550 africas_talking_sms Sending SMS alert for created event - human resource: Kasongo, message: PERSONNEL ALERT: New site manager 'Kasongo' added to staff at Baraka. Contact: 0715322600
+INFO 2025-04-24 18:36:16,551 africas_talking_sms Attempting to send SMS to ['+254715322600', '+254793525583']
+DEBUG 2025-04-24 18:36:16,583 africas_talking_sms No owner phone number found for site Baraka
+INFO 2025-04-24 18:36:16,583 africas_talking_sms Found 2 recipients for site Baraka: ['0715322600', '+254793525583']
+INFO 2025-04-24 18:36:16,583 africas_talking_sms Sending SMS alert for created event - human resource: Kasongo, message: PERSONNEL ALERT: New site manager 'Kasongo' added to staff at Baraka. Contact: 0715322600
+INFO 2025-04-24 18:36:16,583 africas_talking_sms Attempting to send SMS to ['+254715322600', '+254793525583']
+INFO 2025-04-24 18:36:17,317 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_a28869db415b5358272a91da38ffd18b', 'messageParts': 1, 'number': '+254715322600', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_49e81d0fd4a860b402a0c79ab3b7526b', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+INFO 2025-04-24 18:36:17,517 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_c0e8860f2079271ef71135027246454c', 'messageParts': 1, 'number': '+254715322600', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_0f5be769be96af532c100042a5d415cb', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+INFO 2025-04-25 06:58:22,616 africas_talking_sms Loading initial asset quantities
+INFO 2025-04-25 06:58:22,659 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-04-25 07:06:51,457 africas_talking_sms Loading initial asset quantities
+INFO 2025-04-25 07:06:51,501 africas_talking_sms Loaded 2 asset quantities successfully

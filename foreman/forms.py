@@ -35,7 +35,7 @@ class HumanResourceForm(forms.ModelForm):
             }),
             'phone_number': forms.TextInput(attrs={
                 'class': 'form-input',
-                'placeholder':'Enter Emloyee Phone number(+2547123456789)',
+                'placeholder':'Enter Emloyee Phone number (0712345678)',
 
             }),
             'role': forms.TextInput(attrs={

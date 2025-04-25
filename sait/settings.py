@@ -30,8 +30,15 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-znn^4!kn8rnvh(gtb%7p07es0+2%v^i=8x@+ve+!1=bc6%+r($'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = True
+
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://1e82-41-139-168-163.ngrok-free.app',
+]
 
 
 # Application definition
@@ -130,7 +137,7 @@ STATICFILES_DIRS = [
 
 
 # AT config
-AFRICASTALKING_USERNAME = 'sandbox'
+AFRICASTALKING_USERNAME = 'saitt'
 INVENTORY_ALERT_RECIPIENTS = ['+254793525583'] 
 
 # Configure logging

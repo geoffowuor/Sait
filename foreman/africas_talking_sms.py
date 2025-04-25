@@ -16,7 +16,7 @@ class SMSService:
     @staticmethod
     def initialize_sdk():
         username = settings.AFRICASTALKING_USERNAME
-        api_key =  'atsk_ce82959658d9978a5c41d83de565ee5f9deeb3e0af0a96a0e8e6e613c656f79037ff8927'
+        api_key =  'atsk_b248695fc07426d962b46e3b63785ec70124b7fdfbe7d119c4d06b15406d217aedb5bdc8'
         
         if not username or not api_key:
             logger.error("AfricasTalking credentials missing: username or API key not configured")
@@ -67,7 +67,7 @@ class SMSService:
                 logger.error("Failed to initialize SMS service")
                 return None
                 
-            response = sms.send(message, formatted_recipients)
+            response = sms.send(message, formatted_recipients,sender_id="AFTKNG")
             logger.info(f"SMS sent successfully: {response}")
             return response
         except Exception as e:
