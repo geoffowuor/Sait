@@ -11,6 +11,7 @@ urlpatterns = [
     
     path('dashboard/', views.dashboard, name='dashboard'),
     path('ai-assistant/', views.ai_assistant, name='ai_assistant'),
+    path('chat/', views.chat, name='chat'),
     path('sites/', views.site_list, name='site_list'),
     path('sites/new/', views.site_create, name='site_create'),
     path('sites/<int:pk>/', views.site_detail, name='site_detail'),

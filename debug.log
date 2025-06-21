@@ -253,3 +253,57 @@ INFO 2025-04-25 07:06:51,457 africas_talking_sms Loading initial asset quantitie
 INFO 2025-04-25 07:06:51,501 africas_talking_sms Loaded 2 asset quantities successfully
 INFO 2025-04-25 07:46:20,578 africas_talking_sms Loading initial asset quantities
 INFO 2025-04-25 07:46:20,666 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-05-19 15:51:27,792 africas_talking_sms Loading initial asset quantities
+INFO 2025-05-19 15:51:27,837 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-05-19 15:51:38,285 africas_talking_sms Loading initial asset quantities
+INFO 2025-05-19 15:51:38,295 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-05-19 15:52:21,339 africas_talking_sms Loading initial asset quantities
+INFO 2025-05-19 15:52:21,346 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-05-19 15:55:56,423 africas_talking_sms Loading initial asset quantities
+INFO 2025-05-19 15:55:56,428 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-05-25 09:18:32,188 africas_talking_sms Loading initial asset quantities
+INFO 2025-05-25 09:18:32,320 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-05-25 09:18:47,076 africas_talking_sms Loading initial asset quantities
+INFO 2025-05-25 09:18:47,079 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-05-25 09:43:06,920 africas_talking_sms Loading initial asset quantities
+INFO 2025-05-25 09:43:07,129 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-03 08:34:19,201 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-03 08:34:19,308 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-03 09:19:51,622 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-03 09:19:51,625 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-05 14:00:43,843 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-05 14:00:43,943 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-05 14:02:02,874 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-05 14:02:02,877 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-05 14:02:15,475 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-05 14:02:15,478 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-07 08:18:49,615 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-07 08:18:49,699 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-12 13:16:47,994 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-12 13:16:48,068 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-13 10:31:16,381 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-13 10:31:16,503 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-13 10:49:26,615 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-13 10:49:26,651 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-17 09:14:44,744 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-17 09:14:44,884 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-18 13:30:07,004 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-18 13:30:07,283 africas_talking_sms Loaded 2 asset quantities successfully
+INFO 2025-06-18 13:38:42,216 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-18 13:38:42,225 africas_talking_sms Loaded 2 asset quantities successfully
+DEBUG 2025-06-18 13:50:19,228 africas_talking_sms Human resource signal triggered: created=True, hr_id=17
+INFO 2025-06-18 13:50:19,229 africas_talking_sms New human resource created: Test Name (ID: 17)
+DEBUG 2025-06-18 13:50:19,232 africas_talking_sms No owner phone number found for site Jivanjee
+INFO 2025-06-18 13:50:19,232 africas_talking_sms Found 2 recipients for site Jivanjee: ['0790060139', '+254793525583']
+INFO 2025-06-18 13:50:19,233 africas_talking_sms Sending SMS alert for created event - human resource: Test Name, message: PERSONNEL ALERT: New Test Role 'Test Name' added to staff at Jivanjee. Contact: 0793525583
+INFO 2025-06-18 13:50:19,233 africas_talking_sms Attempting to send SMS to ['+254790060139', '+254793525583']
+INFO 2025-06-18 13:50:20,096 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_57c6eca166a82dab34eb332f8ebd5d17', 'messageParts': 1, 'number': '+254790060139', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_5613c9d815f3c8e41b2f7bf79bb9e0cf', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+DEBUG 2025-06-18 13:52:08,532 africas_talking_sms Asset signal triggered: created=True, asset_id=28
+INFO 2025-06-18 13:52:08,533 africas_talking_sms New asset created: Test Asset (ID: 28)
+DEBUG 2025-06-18 13:52:08,536 africas_talking_sms No owner phone number found for site Kapsowar
+INFO 2025-06-18 13:52:08,537 africas_talking_sms Found 3 recipients for site Kapsowar: ['0793525583', '0790060139', '+254793525583']
+INFO 2025-06-18 13:52:08,537 africas_talking_sms Sending SMS alert for created event - asset: Test Asset, message: INVENTORY ALERT: New equipment 'Test Asset' added to inventory at Kapsowar. Quantity: 0 2. S/N: 2222
+INFO 2025-06-18 13:52:08,537 africas_talking_sms Attempting to send SMS to ['+254793525583', '+254790060139', '+254793525583']
+INFO 2025-06-18 13:52:09,424 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_7cf213e04ffe687e904434f87dd69a0e', 'messageParts': 1, 'number': '+254790060139', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_64cd65b69a48a979767f0094dc0a65ea', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
+INFO 2025-06-21 12:46:31,852 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-21 12:46:31,883 africas_talking_sms Loaded 3 asset quantities successfully

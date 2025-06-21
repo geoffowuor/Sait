@@ -127,6 +127,7 @@ body {
 /*AI chart styling*/
 .assistant{
     padding: 20px;
+    height: 100vh;
 }
 .assistant h2{
     display: inline-flex;
@@ -154,6 +155,7 @@ body {
 }
 .chat-messages{
     padding: 20px;
+    border: none;
 }
 
 /* Projects and Assets on dashboard stylng*/

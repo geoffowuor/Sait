@@ -15,6 +15,7 @@
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
                 <li><a href="{% url "login" %}" class="login">Login</a></li>
             </ul>
         </nav>
@@ -29,34 +30,55 @@
     {% endblock content %}
 {% block footer %}
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>PRESENTATION</h3>
-                    <p>We value your feedback and are constantly working to improve our services.</p>
-                    <p>Share your thoughts with us to help us serve you better.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>CONTACT US</h3>
-                    <p>Email: info@sait.com</p>
-                    <p>Phone: +254793525583</p>
-                </div>
-                <div class="footer-section">
-                    <h3>SOCIAL</h3>
-                    <ul>
-                        <li><a href="#" target="_blank"><i id="fb" class='bx bxl-facebook'></i></a></li>
+
+     <!-- Footer -->
+     <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Sait</h3>
+                <p>Leading construction site management platform trusted by professionals worldwide. Build smarter, manage better.</p>
+                <div class="social-links">
+                <li><a href="#" target="_blank"><i id="fb" class='bx bxl-facebook'></i></a></li>
                         <li><a href="#" target="_blank"><i id="x" class='bx bxl-twitter'></i></a></li>
                         <li><a href="#" target="_blank"><i id="ig" class='bx bxl-instagram'></i></a></li>
                         <li><a href="#" target="_blank"><i id="li" class='bx bxl-linkedin'></i></a></li>
                         <li><a href="#" target="_blank"><i id="yt" class='bx bxl-youtube'></i></a></li>
-
-                    </ul>
                 </div>
             </div>
-            <div class="copyright">
-                <p>© 2025 Sait. All rights reserved.</p>
+            
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">API</a></li>
+                </ul>
             </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sait. All rights reserved. | Privacy Policy | Terms of Service</p>
         </div>
     </footer>
 {% endblock footer %}

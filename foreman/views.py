@@ -41,7 +41,7 @@ def register(request):
                     password=password
                 )
                 # Store the full name
-                user.first_name = name  # You could split the name into first_name and last_name if needed
+                user.first_name = name 
                 user.save()
                 
                 messages.success(request, 'Account created successfully!')
@@ -105,6 +105,9 @@ def ai_assistant(request):
             return JsonResponse({"response": "Invalid JSON data."}, status=400)
     
     return render(request, '#.html')
+
+def chat(request):
+    return render(request, "chat.html")
 
 @login_required
 def site_list(request):
