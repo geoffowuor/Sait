@@ -307,3 +307,5 @@ INFO 2025-06-18 13:52:08,537 africas_talking_sms Attempting to send SMS to ['+25
 INFO 2025-06-18 13:52:09,424 africas_talking_sms SMS sent successfully: {'SMSMessageData': {'Message': 'Sent to 2/2 Total Cost: KES 1.6000', 'Recipients': [{'cost': 'KES 0.8000', 'messageId': 'ATXid_7cf213e04ffe687e904434f87dd69a0e', 'messageParts': 1, 'number': '+254790060139', 'status': 'Success', 'statusCode': 100}, {'cost': 'KES 0.8000', 'messageId': 'ATXid_64cd65b69a48a979767f0094dc0a65ea', 'messageParts': 1, 'number': '+254793525583', 'status': 'Success', 'statusCode': 100}]}}
 INFO 2025-06-21 12:46:31,852 africas_talking_sms Loading initial asset quantities
 INFO 2025-06-21 12:46:31,883 africas_talking_sms Loaded 3 asset quantities successfully
+INFO 2025-06-29 11:14:04,803 africas_talking_sms Loading initial asset quantities
+INFO 2025-06-29 11:14:04,957 africas_talking_sms Loaded 3 asset quantities successfully
