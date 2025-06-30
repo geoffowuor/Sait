@@ -106,6 +106,7 @@ def ai_assistant(request):
     
     return render(request, '#.html')
 
+
 def chat(request):
     return render(request, "chat.html")
 
