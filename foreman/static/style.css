@@ -81,18 +81,23 @@ body {
     border-radius: 0.25rem;
     padding: 1rem;
     background-color: #f8f9fa;
+    border-style: none;
 }
 
-.chat-message {
+.chat-messages {
     margin-bottom: 1rem;
     padding: 0.75rem;
     border-radius: 0.5rem;
+
 }
 
 .user-message {
-    background-color: #d1ecf1;
+    background-color: rgb(202, 199, 199);
     margin-left: 2rem;
     margin-right: 0.5rem;
+    padding: 10px;
+    border-radius: 3px;
+
 }
 
 .assistant-message {
@@ -127,7 +132,10 @@ body {
 /*AI chart styling*/
 .assistant{
     padding: 20px;
+    height: 100vh;
+    border: none;
 }
+
 .assistant h2{
     display: inline-flex;
     align-items: center;
@@ -142,6 +150,8 @@ body {
     justify-items: center;
     width: 100%;
     gap: 10px;
+    position: fixed;
+    margin-bottom: 40px;
 }
 .assistant input{
     width: 60%;
@@ -154,6 +164,7 @@ body {
 }
 .chat-messages{
     padding: 20px;
+    border-style: none;
 }
 
 /* Projects and Assets on dashboard stylng*/

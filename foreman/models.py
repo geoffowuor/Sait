@@ -23,8 +23,8 @@ class Asset(models.Model):
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=100, choices=asset_types, default='equipment')
     units = models.CharField(max_length=100)
-    serial_number = models.CharField(max_length=50, blank=True, null=True)  # equipment
-    quantity_in_stock = models.IntegerField(default=0)  # material
+    serial_number = models.CharField(max_length=50, blank=True, null=True)  # for equipment
+    quantity_in_stock = models.IntegerField(default=0)  # for material
     cost_per_unit = models.DecimalField(max_digits=10, decimal_places=2)
     maintenance_date = models.DateField(blank=True, null=True)
     assignment_date = models.DateField()

@@ -4,39 +4,47 @@
 {% block content %}
 {% load static %}
 
-    <div class="container">
-      
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Welcome to Sait</h1>
-                <p>Transform your construction site management with our comprehensive platform. Streamline operations, track inventory in real-time, and boost productivity across all your projects.</p>
-                <a href="{% url "register" %}" class="get-started">GET STARTED</a>
-            </div>
-            <div class="hero-image">
-                    <img src="{% static 'images/organic-flat-engineers-working-construction.png' %}" alt="Construction site illustration">
-                
-                    
-            </div>
-        </section>
-    </div>
 
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">About</h2>
-            <div class="about-content">
-                 <div class="about-image">
-        
-                    <img src="{% static 'images/building-permit-abstract-concept.png' %}" alt="About Sait">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Build smarter, <span class="highlight">manage better</span></h1>
+                <p>Transform your construction site management with our comprehensive platform. Streamline operations, track inventory in real-time, and boost productivity across all your projects.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">
+                        Get Started
+                        <span>→</span>
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        Watch Demo
+                        <span>▶</span>
+                    </a>
                 </div>
-                <div class="about-text">
-                    <p>We’re on a mission to modernize construction site management. Our platform brings together everything you need to run efficient, organized, and productive job sites—from real-time inventory tracking to streamlined operations.</p>
-                        <p> Built for contractors, project managers, and teams on the ground, we help you stay in control, cut down delays, and deliver results with confidence. </p>
-                    
+            </div>
+            
+            <div class="hero-visual">
+                <div class="construction-scene">
+                    <div class="construction-elements"></div>
                 </div>
-               
+                <div class="floating-cards">
+                    <div class="card">
+                        <div class="card-title">Active Projects</div>
+                        <div class="card-value">35</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Head Count</div>
+                        <div class="card-value">175</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Efficiency</div>
+                        <div class="card-value">98%</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
 
     <section id="features" class="services-section">
         <div class="container">
@@ -65,6 +73,134 @@
             </div>
         </div>
     </section>
+
+    <!-- Pricing Section -->
+<section class="pricing-section" id="pricing">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Choose the perfect plan for your construction projects. Start free, scale as you grow.</p>
+            
+            <div class="pricing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <div class="toggle-switch" onclick="togglePricing()">
+                    <div class="toggle-knob"></div>
+                </div>
+                <span class="toggle-label">Annual <span class="save-badge">(Save 20%)</span></span>
+            </div>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Free Plan -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Free</h3>
+                <p class="plan-description">Perfect for trying out Sait with basic project management</p>
+                
+                <div class="price">
+                    <span class="price-amount">$0</span>
+                    <span class="price-period">/forever</span>
+                </div>
+
+                <ul class="features-list">
+                    <li><span class="check-icon"></span>1 project</li>
+                    <li><span class="check-icon"></span>Basic inventory tracking</li>
+                    <li><span class="check-icon"></span>Standard reports</li>
+                    <li><span class="check-icon"></span>Email support</li>
+                    <li><span class="check-icon"></span>500MB storage</li>
+                    <li><span class="check-icon"></span>Mobile app access</li>
+                </ul>
+
+                <button class="cta-button secondary">Get Started Free</button>
+            </div>
+
+            <!-- Starter Plan -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Starter</h3>
+                <p class="plan-description">Ideal for small construction teams managing multiple projects</p>
+                
+                <div class="price">
+                    <span class="price-amount" data-monthly="5" data-annual="4">$5</span>
+                    <span class="price-period">/month</span>
+                    <span class="original-price" data-monthly="" data-annual="$9" style="display: none;"></span>
+                </div>
+
+                <ul class="features-list">
+                    <li><span class="check-icon"></span>Up to 10 projects</li>
+                    <li><span class="check-icon"></span>Advanced inventory tracking</li>
+                    <li><span class="check-icon"></span>Custom reports</li>
+                    <li><span class="check-icon"></span>10GB storage</li>
+                    <li><span class="check-icon"></span>Real-time messaging</li>
+                    <li><span class="check-icon"></span>Priority email support</li>
+                </ul>
+
+                <button class="cta-button secondary">Start Free Trial</button>
+            </div>
+
+            <!-- Professional Plan -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Popular</div>
+                <h3 class="plan-name">Business</h3>
+                <p class="plan-description">Complete solution for growing construction businesses</p>
+                
+                <div class="price">
+                    <span class="price-amount" data-monthly="14" data-annual="12">$14</span>
+                    <span class="price-period">/month</span>
+                    <span class="original-price" data-monthly="14" data-annual="$17" style="display: none;"></span>
+                </div>
+
+                <ul class="features-list">
+                    <li><span class="check-icon"></span>Unlimited projects</li>
+                    <li><span class="check-icon"></span>AI assistant included</li>
+                    <li><span class="check-icon"></span>Advanced analytics</li>
+                    <li><span class="check-icon"></span>50GB storage</li>
+                    <li><span class="check-icon"></span>Team collaboration tools</li>
+                    <li><span class="check-icon"></span>Phone & email support</li>
+                    <li><span class="check-icon"></span>Custom integrations</li>
+                </ul>
+
+                <button class="cta-button">Start Free Trial</button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Enterprise</h3>
+                <p class="plan-description">Comprehensive solution for large construction companies</p>
+                
+                <div class="price">
+                    <span class="original-price" data-monthly="" data-annual="" style="display: none;"></span>
+                </div>
+
+                <ul class="features-list">
+                    <li><span class="check-icon"></span>Everything in Business</li>
+                    <li><span class="check-icon"></span>Advanced AI automation</li>
+                    <li><span class="check-icon"></span>Dedicated account manager</li>
+                    <li><span class="check-icon"></span>Unlimited storage</li>
+                    <li><span class="check-icon"></span>24/7 priority support</li>
+                    <li><span class="check-icon"></span>Custom training</li>
+                    <li><span class="check-icon"></span>White-label options</li>
+                </ul>
+
+                <button class="cta-button secondary">Contact Sales</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+       <!-- CTA Section -->
+       <section class="cta">
+        <div class="cta-container">
+            <h2>Ready to Transform Your Construction Projects?</h2>
+            <p>Join thousands of construction professionals who trust Sait to manage their projects more efficiently. Start your free trial today and see the difference.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-white">Start Free Trial</a>
+                <a href="#" class="btn-outline">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const serviceItems = document.querySelectorAll('.service-item');
@@ -86,6 +222,33 @@
                 });
             });
         });
+
+        function togglePricing() {
+    const toggle = document.querySelector('.toggle-switch');
+    const priceAmounts = document.querySelectorAll('.price-amount[data-monthly]');
+    const originalPrices = document.querySelectorAll('.original-price');
+    
+    toggle.classList.toggle('active');
+    const isAnnual = toggle.classList.contains('active');
+    
+    priceAmounts.forEach(amount => {
+        const monthly = amount.getAttribute('data-monthly');
+        const annual = amount.getAttribute('data-annual');
+        amount.textContent = '$' + (isAnnual ? annual : monthly);
+    });
+    
+    originalPrices.forEach(price => {
+        const monthly = price.getAttribute('data-monthly');
+        const annual = price.getAttribute('data-annual');
+        
+        if (isAnnual && annual) {
+            price.textContent = annual;
+            price.style.display = 'inline';
+        } else {
+            price.style.display = 'none';
+        }
+    });
+}
     </script>
 
     
