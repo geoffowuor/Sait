@@ -29,6 +29,9 @@ urlpatterns = [
     path('assets/<int:pk>/update/', views.asset_update, name='asset_update'),
     path('assets/<int:pk>/delete/', views.asset_delete, name='asset_delete'),
     path('assets/<int:pk>/maintenance/', views.asset_maintenance, name='asset_maintenance'),
+    path("issue/", views.issue_asset, name="issue_asset"),  
+    path("transactions/", views.asset_transactions, name="asset_transactions"),
+    path('report/', views.generate_report, name='generate_report'),
 ]
 
 
