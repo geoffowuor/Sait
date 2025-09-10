@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Asset Transactions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #1E3A8A;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .actions {
+      margin-bottom: 15px;
+      text-align: right;
+    }
+    .actions a {
+      display: inline-block;
+      padding: 8px 12px;
+      background: #1E3A8A;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .actions a:hover {
+      background: #0f235c;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    th {
+      background: #f5f5f5;
+      color: #1E3A8A;
+    }
+    tr:nth-child(even) {
+      background: #fafafa;
+    }
+    .no-data {
+      text-align: center;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Asset Transactions</h2>
+
+    <div class="actions">
+      <a href="{% url 'issue_asset' %}">➕ Issue Asset</a>
+      <a href="{% url 'generate_report' %}">⬇ Download PDF Report</a>
+    </div>
+
+    {% if transactions %}
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Asset</th>
+            <th>Quantity</th>
+            <th>Issued To</th>
+            <th>Issued By</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tx in transactions %}
+          <tr>
+            <td>{{ tx.date|date:"Y-m-d H:i" }}</td>
+            <td>{{ tx.asset.name }}</td>
+            <td>{{ tx.quantity_issued }}</td>
+            <td>{{ tx.issued_to }}</td>
+            <td>{{ tx.issued_by.username }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="no-data">No asset transactions found.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
