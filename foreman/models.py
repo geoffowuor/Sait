@@ -51,3 +51,20 @@ class Human_resource(models.Model):
 class chat(models.Model):
     query = models.TextField()
     response = models.TextField()
+
+
+class AssetTransaction(models.Model):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    issued_to = models.CharField(max_length=255) 
+    quantity_issued = models.PositiveIntegerField()
+    issued_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:  
+            asset = Asset.objects.get(pk=self.asset.pk)  
+            if self.quantity_issued > asset.quantity_in_stock:
+                raise ValueError("Not enough stock available")
+            asset.quantity_in_stock -= self.quantity_issued
+            asset.save()
+        super().save(*args, **kwargs)
