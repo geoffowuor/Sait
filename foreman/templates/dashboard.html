@@ -8,33 +8,30 @@
 <div class="dashboard-container">
     <!-- Header with quick stats -->
     <div class="dashboard-header">
-        <h1>Welcome to Sait</h1>
+        <h1 style="color: #1E293B;">Hello, <span style="color: #10B981;">{{user.get_full_name}}</span></h1>
         <p>Smart Material & Asset Management with AI Assistance</p>
         
         <div class="stats">
             <div class="stat">
                 <h3>Active Projects</h3>
-                <h3 class="stat-number" style="color:lightgreen; font:1rem;" >{{ sites.count }}</h3>
-            </div>
-            <div class="stat">
-                <h3>Total Assets</h3>
-                <h3 class="stat-number" style="color:lightgreen; font:1rem;" >{{ assets.count }}</h3>
+                <h3 style="color:#1E3A8A;" class="stat-number" style="color:lightgreen; font:1rem;" >{{ sites.count }}</h3>
             </div>
             <div class="stat">
                 <h3>Low Stock Items</h3>
-                <p class="stat-number">{{ low_stock_count }}</p>
+                <p style="color:#1E3A8A;" class="stat-number">{{ low_stock.count }}</p>
             </div>
             <div class="stat">
                 <h3>Maintenance</h3>
-                <p class="stat-number">{{ pending_maintenance }}</p>
+                <p style="color:#1E3A8A;" class="stat-number">{{ pending_maintenance.count }}</p>
             </div>
 
             <div class="stat">
                 <h3>Head Count</h3>
-                <h3 class="stat-number" style="color:lightgreen; font:1rem;" >{{ human_resources.count }}</h3>
+                <h3 style="color:#1E3A8A;" class="stat-number" style="color:lightgreen; font:1rem;" >{{ human_resources.count }}</h3>
             </div>
         </div>
     </div>
+
           <!-- Quick Actions -->
           <div class="dashboard-section">
             <div class="section-header">
@@ -44,10 +41,18 @@
                     <i class="fas fa-plus-circle"></i>
                     <span>Add New Project</span>
                 </a>
+
                 <a href="{% url 'asset_create' %}" class="action-card">
                     <i class="fas fa-truck-loading"></i>
                     <span>Register Asset</span>
                 </a>
+
+                 <a href="{% url 'asset_create' %}" class="action-card">
+                    <i class="fas fa-boxes"></i>
+                    <span>Issue Assets</span>
+                </a>
+
+
                 <a href="{% url 'asset_create' %}" class="action-card">
                     <i class="fas fa-boxes"></i>
                     <span>Update Inventory</span>
@@ -88,11 +93,11 @@
                     <p><i class="fas fa-map-marker-alt"></i> {{ site.location }}</p>
                     <p><i class="fas fa-calendar"></i> {{ site.start_date|date:"M d, Y" }} - {{ site.end_date|date:"M d, Y" }}</p>
                     <div class="site-actions">
-                        <a href="{% url 'site_detail' site.id %}" class="btn btn-primary">Details</a>
+                        <a href="{% url 'site_detail' site.id %}" class="btn btn-primary" styele="background:#1E3A8A;">Details</a>
                     </div>
                 </div>
                 {% empty %}
-                <p>No sites available. <a href="{% url "site_create" %}">Add a site</a></p>
+                <p>No Project available. <a href="{% url "site_create" %}">Add a site</a></p>
                 {% endfor %}
             </div>
         </div>
