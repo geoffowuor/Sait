@@ -9,3 +9,6 @@ class ForemanConfig(AppConfig):
         from . import africas_talking_sms
         if not os.environ.get('RUN_MAIN', None):
             africas_talking_sms.load_initial_asset_quantities()
+
+
+
