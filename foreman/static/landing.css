@@ -3,7 +3,7 @@
 
         
 :root {
-    --primary-color: #0070f3;
+    --primary-color: #1E3A8A;
     --secondary-color: #0056b3;
     --text-color: #333;
     --light-gray: #f5f5f5;
@@ -51,7 +51,7 @@ nav {
 .logo {
     font-size: 28px;
     font-weight: 700;
-    color: #0070f3;
+    color: #1E3A8A;
     text-decoration: none;
     letter-spacing: 1px;
    
@@ -65,6 +65,8 @@ nav ul {
 }
 nav button{
     border-radius: 12px;
+    background: #1E3A8A;
+
 }
 
 nav ul li {
@@ -102,7 +104,7 @@ nav ul li a:hover:after {
 .login {
     display: inline-block;
     padding: 10px 30px;
-    background: linear-gradient(135deg, #2563eb,#0070f3);
+    background: #1E3A8A;
     color: var(--white);
     text-decoration: none;
     border-radius: 8px;
@@ -184,7 +186,7 @@ nav ul li a:hover:after {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    background: #1E3A8A;
     color: white;
     padding: 1.1rem 2.2rem;
     border: none;
@@ -239,7 +241,7 @@ nav ul li a:hover:after {
     width: 100%;
     max-width: 600px;
     height: 450px;
-    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    background: #1E3A8A;
     border-radius: 24px;
     position: relative;
     overflow: hidden;
