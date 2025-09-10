@@ -10,11 +10,15 @@ from .forms import AIAssistantForm
 import google.generativeai as genai
 import json
 from django.conf import settings
-from .models import Site,Asset, Human_resource
-from .forms import SiteForm, HumanResourceForm,AssetForm
+from .models import Site,Asset, Human_resource,AssetTransaction
+from .forms import SiteForm, HumanResourceForm,AssetForm,AssetTransactionForm
 from django.core.paginator import Paginator
 from django.db.models import Sum, Count, Q, F
 from django.utils import timezone
+from django.template.loader import render_to_string
+from weasyprint import HTML
+from django.http import HttpResponse
+
 
 def home(request):
     return render(request, "index.html")
@@ -186,7 +190,7 @@ def human_resource_list(request):
     sites = Site.objects.filter(owner=request.user)
     # Get unique roles for the filter dropdown
     roles = Human_resource.objects.values_list('role', flat=True).distinct()
-    # Apply filters if provided
+    # Apply filters
     site_filter = request.GET.get('site')
     role_filter = request.GET.get('role')
     search_query = request.GET.get('search')
@@ -201,7 +205,7 @@ def human_resource_list(request):
         human_resources_list = human_resources_list.filter(name__icontains=search_query)
     
     # Pagination
-    paginator = Paginator(human_resources_list, 10)  # Show 10 records per page
+    paginator = Paginator(human_resources_list, 10)  
     page_number = request.GET.get('page')
     human_resources = paginator.get_page(page_number)
     
@@ -384,3 +388,41 @@ def asset_maintenance(request, pk):
         'asset': asset,
         'suggested_date': suggested_date,
     })
+
+
+
+
+#issue
+
+@login_required
+def issue_asset(request):
+    if request.method == "POST":
+        form = AssetTransactionForm(request.POST)
+        if form.is_valid():
+            transaction = form.save(commit=False)
+            transaction.issued_by = request.user
+            transaction.save()
+            messages.success(request, "Asset issued successfully")
+            return redirect("asset_transactions")
+    else:
+        form = AssetTransactionForm()
+    
+    return render(request, "asset_issue.html", {"form": form})
+
+#transactions
+def asset_transactions(request):
+    transactions = AssetTransaction.objects.all().order_by("-date")
+    return render(request, "transactions.html", {"transactions": transactions})
+
+# report 
+
+def generate_report(request):
+    transactions = AssetTransaction.objects.all().order_by('-date')
+    html_string = render_to_string("report.html", {"transactions": transactions})
+    
+    html = HTML(string=html_string)
+    pdf = html.write_pdf()
+
+    response = HttpResponse(pdf, content_type="application/pdf")
+    response['Content-Disposition'] = 'inline; filename="report.pdf"'
+    return response

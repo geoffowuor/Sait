@@ -1,6 +1,6 @@
 # core/forms.py
 from django import forms
-from .models import Site, Asset,chat, Human_resource
+from .models import Site, Asset,chat, Human_resource,AssetTransaction
 from django.utils import timezone
 
 class AIAssistantForm(forms.Form):
@@ -94,11 +94,8 @@ class AssetForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None) 
         super().__init__(*args, **kwargs)
-        # Set initial date if creating a new asset
         if not kwargs.get('instance'):
             self.fields['assignment_date'].initial = timezone.now().date()
-            
-        # Make fields dynamically required or hidden based on asset type
         self.fields['serial_number'].required = False
         self.fields['quantity_in_stock'].required = False
         
@@ -106,10 +103,16 @@ class AssetForm(forms.ModelForm):
         cleaned_data = super().clean()
         asset_type = cleaned_data.get('type')
         
-        # Validate based on asset type
+
         if asset_type == 'equipment' and not cleaned_data.get('serial_number'):
             self.add_error('serial_number', 'Serial number is required for equipment.')
         elif asset_type == 'material' and cleaned_data.get('quantity_in_stock') is None:
             self.add_error('quantity_in_stock', 'Quantity is required for materials.')
         
         return cleaned_data
+    
+
+class AssetTransactionForm(forms.ModelForm):
+    class Meta:
+        model = AssetTransaction
+        fields = ["asset", "issued_to", "quantity_issued"]
