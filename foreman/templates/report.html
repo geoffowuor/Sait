@@ -48,7 +48,7 @@
       <tr>
         <th>Date</th>
         <th>Asset</th>
-        <th>Action</th>
+        <th>Issued By</th>
         <th>Quantity</th>
         <th>Issued To</th>
       </tr>
@@ -58,8 +58,8 @@
       <tr>
         <td>{{ tx.date|date:"Y-m-d H:i" }}</td>
         <td>{{ tx.asset.name }}</td>
-        <td>{{ tx.action }}</td>
-        <td>{{ tx.quantity }}</td>
+        <td>{{ tx.issued_by.username}}</td>
+        <td>{{ tx.quantity_issued }}</td>
         <td>{{ tx.issued_to }}</td>
       </tr>
       {% empty %}
@@ -71,7 +71,7 @@
   </table>
 
   <div class="footer">
-    Generated on {% now "Y-m-d H:i" %}
+    Generated on {% now "Y-m-d H:i" %} by Sait.com| Build Better, Manage Smarter
   </div>
 </body>
 </html>
