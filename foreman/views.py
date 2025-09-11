@@ -74,7 +74,12 @@ def dashboard(request):
     sites= Site.objects.filter(owner=request.user)
     assets = Asset.objects.filter(owner=request.user)
     human_resources = Human_resource.objects.filter(owner=request.user)
+
+    activities = AssetTransaction.objects.select_related("asset", "issued_by").order_by("-date")[:10]
+
+  
     return render(request, "dashboard.html", {"sites": sites,
+                                              "activities": activities,
                                               "assets": assets,
                                               "human_resources": human_resources})
 
@@ -258,7 +263,6 @@ def asset_list(request):
     sites = Site.objects.filter(owner=request.user)
     asset_types = Asset.asset_types
     assets_queryset = Asset.objects.select_related('site').all()
-    # Apply filters
     site_id = request.GET.get('site', '')
     asset_type = request.GET.get('type', '')
     search = request.GET.get('search', '')
@@ -280,7 +284,7 @@ def asset_list(request):
     equipment_count = assets_queryset.filter(type='equipment').count()
     material_count = assets_queryset.filter(type='material').count()
     
-    # Calculate total value
+    #
     equipment_value = assets_queryset.filter(type='equipment').aggregate(
         value=Sum('cost_per_unit'))['value'] or 0
     
@@ -289,7 +293,7 @@ def asset_list(request):
     
     total_value = equipment_value + material_value
     
-    # Get maintenance alerts
+
     today = timezone.now().date()
     next_month = today + timezone.timedelta(days=30)
     maintenance_due_assets = assets_queryset.filter(
@@ -297,7 +301,7 @@ def asset_list(request):
         maintenance_date__lte=next_month
     ).order_by('maintenance_date')
     
-    # Pagination
+    # Paginat
     paginator = Paginator(assets_queryset, 10)
     page_number = request.GET.get('page')
     assets = paginator.get_page(page_number)
@@ -406,7 +410,7 @@ def issue_asset(request):
             return redirect("asset_transactions")
     else:
         form = AssetTransactionForm()
-    
+
     return render(request, "asset_issue.html", {"form": form})
 
 #transactions
