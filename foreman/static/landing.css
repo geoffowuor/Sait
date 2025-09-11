@@ -881,64 +881,8 @@ nav ul li a:hover:after {
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 1024px) {
-    .hero-content {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        text-align: center;
-    }
-    
-    .floating-cards {
-        position: static;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 2rem;
-    }
-}
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
 
-    .hero-text h1 {
-        font-size: 2.8rem;
-    }
 
-    .section-title {
-        font-size: 2.2rem;
-    }
 
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .cta h2 {
-        font-size: 2.2rem;
-    }
-
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-text h1 {
-        font-size: 2.2rem;
-    }
-
-    .hero-text p {
-        font-size: 1rem;
-    }
-
-    .floating-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-}
