@@ -8,8 +8,8 @@
 <div class="dashboard-container">
     <!-- Header with quick stats -->
     <div class="dashboard-header">
-        <h1 style="color: #1E293B;">Hello, <span style="color: #10B981;">{{user.get_full_name}}</span></h1>
-        <p>Smart Material & Asset Management with AI Assistance</p>
+        <h1 style="font-size:1.5rem;color:#1E3A8A;font-weight:600;">Hello, <span style="color: #10B981;">{{user.get_full_name}}</span> !</h1>
+        <p></p>
         
         <div class="stats">
             <div class="stat">
@@ -18,11 +18,11 @@
             </div>
             <div class="stat">
                 <h3>Low Stock Items</h3>
-                <p style="color:#1E3A8A;" class="stat-number">{{ low_stock.count }}</p>
+                <p style="color:#1E3A8A;" class="stat-number">0</p>
             </div>
             <div class="stat">
                 <h3>Maintenance</h3>
-                <p style="color:#1E3A8A;" class="stat-number">{{ pending_maintenance.count }}</p>
+                <p style="color:#1E3A8A;" class="stat-number">0</p>
             </div>
 
             <div class="stat">
@@ -47,9 +47,9 @@
                     <span>Register Asset</span>
                 </a>
 
-                 <a href="{% url 'asset_create' %}" class="action-card">
-                    <i class="fas fa-boxes"></i>
-                    <span>Issue Assets</span>
+                 <a href="{% url 'generate_report' %}" class="action-card">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Generate Report</span>
                 </a>
 
 
@@ -79,77 +79,71 @@
 
  
 
-    <!-- Main Dashboard Content -->
-    <div class="dashboard-content">
-        <!-- Sites Overview -->
-        <div class="dashboard-section">
-            <div class="section-header">
-                <h2>Projects</h2>
-            </div>
-            <div class="sites-grid">
-                {% for site in sites %}
-                <div class="site-card">
-                    <h3>{{ site.name }}</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> {{ site.location }}</p>
-                    <p><i class="fas fa-calendar"></i> {{ site.start_date|date:"M d, Y" }} - {{ site.end_date|date:"M d, Y" }}</p>
-                    <div class="site-actions">
-                        <a href="{% url 'site_detail' site.id %}" class="btn btn-primary" styele="background:#1E3A8A;">Details</a>
-                    </div>
-                </div>
-                {% empty %}
-                <p>No Project available. <a href="{% url "site_create" %}">Add a site</a></p>
-                {% endfor %}
-            </div>
+ <div class="dashboard-content">
+    <div class="dashboard-section">
+        <div class="section-header" style="display:flex;justify-content:space-between; align-items:center;margin-bottom:1rem;">
+            <h2 style="font-size:1.5rem;color:#1E3A8A;font-weight:600;">Projects</h2>
         </div>
+        
+        <div class="sites-grid" style="display:grid;grid-template-columns:repeat(auto(4,1fr));gap:1.5rem;">
+            {% for site in sites %}
+            <div class="site-card" style="background:#fff;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,0.05);padding:1rem;transition:transform 0.2s ease;">
+                <h3 style="font-size:1.25rem;font-weight:600;color:#111827;margin-bottom:0.5rem;">{{ site.name }}</h3>
+                <p style="color:#4B5563;margin:0.25rem 0;"><i class="fas fa-map-marker-alt" style="color:#1E3A8A;"></i> {{ site.location }}</p>
+                <p style="color:#4B5563;margin:0.25rem 0;"><i class="fas fa-calendar" style="color:#1E3A8A;"></i> {{ site.start_date|date:"M d, Y" }} - {{ site.end_date|date:"M d, Y" }}</p>
+                <div class="site-actions" style="margin-top:1rem;">
+                    <a href="{% url 'site_detail' site.id %}" 
+                       class="btn btn-primary" 
+                       style="background:#1E3A8A;color:white;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;display:inline-block;">
+                       View Project
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <p style="color:#6B7280;">No project available. <a href="{% url 'site_create' %}" style="color:#1E3A8A;font-weight:600;">Add one</a></p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
         <!-- Assets Overview -->
-        <div class="dashboard-section">
-            <div class="section-header">
-                <h2>Assets</h2>
-            </div>
-            
+    <div class="dashboard-section">
+    <div class="card" style="background:#fff;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,0.05);padding:1rem;">
+        <h2 style="font-size:1.5rem;color:#1E3A8A;font-weight:600;margin-bottom:1rem;">Recent Activities</h2>
+        
+        <ul style="list-style:none;padding:0;margin:0;">
+            {% for activity in activities %}
+            <li style="padding:0.75rem 0;border-bottom:1px solid #E5E7EB;">
+                <span style="font-weight:600;color:#111827;">
+                    {{ activity.issued_by.username|default:"System" }}
+                </span>
+                <span style="color:#374151;">
+                    issued <strong>{{ activity.quantity_issued }}</strong> 
+                    <span style="color:#1E3A8A;">{{ activity.asset.name }}</span>
+                    to <strong>{{ activity.issued_to }}</strong>
+                </span>
+                <small style="display:block;color:#6B7280;margin-top:0.25rem;">
+                    {{ activity.date|timesince }} ago
+                </small>
+            </li>
+            {% empty %}
+            <li style="color:#6B7280;padding:0.75rem 0;">No activities yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
           
-            <div id="equipment" class="tab-content active">
-                <table class="dashboard-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Serial Number</th>
-                            <th>Site</th>
-                            <th>Maintenance Due</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for asset in assets %}
-                        <tr>
-                            <td>{{ asset.name }}</td>
-                            <td>{{ asset.serial_number }}</td>
-                            <td>{{ asset.site.name }}</td>
-                            <td class="{% if asset.maintenance_date|date:'Y-m-d' < today %}overdue{% endif %}">
-                                {{ asset.maintenance_date|date:"M d, Y" }}
-                            </td>
-                            <td>
-                                <a href="{% url 'asset_detail' asset.id %}" class="btn btn-sm">Details</a>
-                            </td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="5">No  assets available.</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+          
         </div>
+    </div>  
         
        
   
-<!-- JavaScript for tab switching -->
+
 <script>
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Tab switching functionality
+    
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
         
@@ -157,17 +151,17 @@
             button.addEventListener('click', () => {
                 const tabId = button.getAttribute('data-tab');
                 
-                // Remove active class from all buttons and contents
+                
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
                 
-                // Add active class to clicked button and corresponding content
+            
                 button.classList.add('active');
                 document.getElementById(tabId).classList.add('active');
             });
         });
         
-        // AI Assistant form submission
+    
         const aiForm = document.getElementById('ai-form');
         const chatMessages = document.getElementById('chat-messages');
         
@@ -177,25 +171,25 @@
             const query = document.getElementById('query').value;
             if (!query.trim()) return;
             
-            // Add user message to chat
+        
             const userMessage = document.createElement('div');
             userMessage.className = 'message user-message';
             userMessage.textContent = query;
             chatMessages.appendChild(userMessage);
             
-            // Clear input
+            
             document.getElementById('query').value = '';
             
-            // Add loading message
+    
             const loadingMessage = document.createElement('div');
             loadingMessage.className = 'message system-message loading';
             loadingMessage.textContent = 'Processing your request...';
             chatMessages.appendChild(loadingMessage);
             
-            // Scroll to bottom
+        
             chatMessages.scrollTop = chatMessages.scrollHeight;
             
-            // Submit form via AJAX
+        
             fetch(aiForm.action, {
                 method: 'POST',
                 body: new FormData(aiForm),
@@ -205,29 +199,29 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Remove loading message
+            
                 chatMessages.removeChild(loadingMessage);
                 
-                // Add AI response
+            
                 const aiMessage = document.createElement('div');
                 aiMessage.className = 'message system-message';
                 aiMessage.textContent = data.response;
                 chatMessages.appendChild(aiMessage);
                 
-                // Scroll to bottom
+            
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             })
             .catch(error => {
-                // Remove loading message
+                
                 chatMessages.removeChild(loadingMessage);
                 
-                // Add error message
+            
                 const errorMessage = document.createElement('div');
                 errorMessage.className = 'message system-message error';
                 errorMessage.textContent = 'Sorry, there was an error processing your request.';
                 chatMessages.appendChild(errorMessage);
                 
-                // Scroll to bottom
+                
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             });
         });

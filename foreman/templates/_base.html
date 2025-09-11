@@ -51,6 +51,12 @@
                                 <i class="fas fa-boxes"></i> Assets
                             </a>
                         </li>
+                          <li class="nav-item">
+                            <a class="nav-link {% if '/issue/' in request.path %}active{% endif %}" href="{% url "issue_asset" %}">
+                                <i class="fas fa-share-square"></i>
+Issue Asset
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link {% if '/human-resources/' in request.path %}active{% endif %}" href="{% url "human_resource_list" %}">
                                 <i class="fas fa-person"></i> Human Resources
@@ -59,9 +65,15 @@
                         
                          <li class="nav-item">
                             <a class="nav-link {% if '/chat/' in request.path %}active{% endif %}" href="{% url "chat" %}">
-                                <i class="fas fa-chat"></i> AI Chat
+                                <i class="fas fa-comments"></i></i> AI Chat
                             </a>
                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link {% if '/transactions/' in request.path %}active{% endif %}" href="{% url "asset_transactions" %}">
+                                <i class="fas fa-receipt"></i>Transactions
+                            </a>
+                        </li>
+
 
                         
                         </li>
