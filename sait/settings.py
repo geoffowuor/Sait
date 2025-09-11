@@ -181,6 +181,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Get API keys from environment variables
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 AFRICASTALKING_API_KEY = os.environ.get('AFRICASTALKING_API_KEY')
+#paystack
+PAYSTACK_PUBLIC_KEY = os.environ.get('PAYSTACK_PUBLIC_KEY')
+PAYSTACK_SECRET_KEY = os.environ.get('PAYSTACK_SECRET_KEY')
 
 
 
