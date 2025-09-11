@@ -1,74 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Asset Transactions</title>
+{% extends "_base.html" %}
+{% block title %}Asset Transactions{% endblock title %}
+
+{% block content %}
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f9fafb;
-      padding: 20px;
     }
     .container {
-      max-width: 1000px;
-      margin: 0 auto;
+      width: 100%;
+      margin: 0;
       background: #fff;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     h2 {
       color: #1E3A8A;
-      text-align: center;
       margin-bottom: 20px;
+      font-weight: 600;
     }
     .actions {
       margin-bottom: 15px;
-      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     .actions a {
-      display: inline-block;
-      padding: 8px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
       background: #1E3A8A;
       color: white;
       text-decoration: none;
       border-radius: 6px;
       font-size: 14px;
+      transition: background 0.2s ease-in-out;
+    }
+    .actions a.btn-secondary {
+      background: #2563EB;
     }
     .actions a:hover {
       background: #0f235c;
+    }
+    .actions a.btn-secondary:hover {
+      background: #1d4ed8;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
+      font-size: 14px;
     }
     th, td {
-      border: 1px solid #ddd;
-      padding: 8px 10px;
+      border: 1px solid #e5e7eb;
+      padding: 10px 12px;
       text-align: left;
     }
     th {
-      background: #f5f5f5;
+      background: #f9fafb;
       color: #1E3A8A;
+      font-weight: 600;
     }
     tr:nth-child(even) {
-      background: #fafafa;
+      background: #fdfdfd;
     }
     .no-data {
       text-align: center;
       color: #666;
       margin-top: 20px;
+      font-style: italic;
     }
   </style>
-</head>
-<body>
+
   <div class="container">
     <h2>Asset Transactions</h2>
 
     <div class="actions">
-      <a href="{% url 'issue_asset' %}">➕ Issue Asset</a>
-      <a href="{% url 'generate_report' %}">⬇ Download PDF Report</a>
+      <a href="{% url 'issue_asset' %}">
+        <i class="fas fa-share-square"></i> Issue Asset
+      </a>
+
+      <a href="{% url 'generate_report' %}" class="btn-secondary">
+        <i class="fas fa-file-alt"></i> Download PDF Report
+      </a>
     </div>
 
     {% if transactions %}
@@ -98,5 +114,4 @@
       <p class="no-data">No asset transactions found.</p>
     {% endif %}
   </div>
-</body>
-</html>
+{% endblock content %}
