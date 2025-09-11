@@ -1,5 +1,6 @@
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth.models import User
+from django.db.models import F
 
 
 #site model,table in db
@@ -30,6 +31,11 @@ class Asset(models.Model):
     assignment_date = models.DateField()
     discription = models.TextField(blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assets',null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(check=models.Q(quantity_in_stock__gte=0), name='asset_qty_non_negative')
+        ]
     
     def __str__(self):
         return self.name
@@ -55,16 +61,15 @@ class chat(models.Model):
 
 class AssetTransaction(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
-    issued_to = models.CharField(max_length=255) 
+    issued_to = models.CharField(max_length=255)  
     quantity_issued = models.PositiveIntegerField()
     issued_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         if self.pk is None:  
-            asset = Asset.objects.get(pk=self.asset.pk)  
-            if self.quantity_issued > asset.quantity_in_stock:
+            if self.quantity_issued > self.asset.quantity_in_stock:
                 raise ValueError("Not enough stock available")
-            asset.quantity_in_stock -= self.quantity_issued
-            asset.save()
+            self.asset.quantity_in_stock -= self.quantity_issued
+            self.asset.save()
         super().save(*args, **kwargs)
