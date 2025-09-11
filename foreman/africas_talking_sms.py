@@ -151,6 +151,12 @@ class InventoryAlertService:
             f"INVENTORY ALERT: {asset.type.capitalize()} '{asset.name}' COMPLETELY REMOVED "
             f"from inventory at {asset.site.name}. Previous quantity: {asset.quantity_in_stock} {asset.units}"
         )
+    @staticmethod
+    def format_asset_issued_message(asset, quantity, issued_to):
+        return (
+            f"INVENTORY ALERT: {quantity} {asset.units.capitalize()} of {asset.type} '{asset.name}' "
+            f"issued to {issued_to} from {asset.site.name}. Remaining stock: {asset.quantity_in_stock} {asset.units}"
+        )
     
     @staticmethod
     def send_asset_alert(asset, message_type, old_quantity=None):
@@ -161,6 +167,9 @@ class InventoryAlertService:
             message = InventoryAlertService.format_asset_updated_message(asset, old_quantity)
         elif message_type == "deleted":
             message = InventoryAlertService.format_asset_deleted_message(asset)
+        elif message_type == "issued":
+            message = InventoryAlertService.format_asset_issued_message(asset, old_quantity, "N/A")
+
         else:
             logger.error(f"Invalid message type: {message_type}")
             return
